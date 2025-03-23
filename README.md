@@ -1,7 +1,7 @@
 # 100-days-of-ML-by-CampusX
-# ---------------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 This repository is used for Machine learning .. I am learning ML basics.  In 100 days of ML .I wanna cover this in 30 days. Every day note and learning output will be uploaded to this repo.
-## 6th day:
+## 5th day:
 ### **Online Machine Learning**  
 Online machine learning is a technique where a model learns from data incrementally, updating itself as new data arrives instead of training on a fixed dataset. It is useful when dealing with large-scale, continuously changing data streams.
 

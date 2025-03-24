@@ -405,7 +405,8 @@ Machine learning helps social media platforms improve engagement, detect abuse, 
 
 ### **Conclusion**  
 Machine learning is revolutionizing various industries by improving efficiency, security, and customer experience. Whether in retail, banking, transportation, manufacturing, or social media, AI-driven solutions continue to enhance business operations.  
-### 9th day:
+
+## **9th day:
 ### **Machine Learning Development Life Cycle (MLDLC)**  
 
 📌 **1. Business Understanding** – Identify the problem and define objectives.  

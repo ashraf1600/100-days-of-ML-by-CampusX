@@ -550,5 +550,7 @@ _"A data scientist is someone who is better at statistics than a software engine
 ✅ **ML Engineers** specialize in **model deployment & scalability** 🤖  
 
 🔥 **Want to succeed?** Master **problem-solving, communication & technical skills!** 🚀  
+## 11th day : 
+# Setting tools for Data science
 
----
+https://www.youtube.com/watch?v=erbEpk50RCs&list=PLkz_y24mlSJY0Zh22f4n_sOvhObBaY1yL&index=11 

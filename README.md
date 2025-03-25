@@ -554,3 +554,36 @@ _"A data scientist is someone who is better at statistics than a software engine
 # Setting tools for Data science
 
 https://www.youtube.com/watch?v=erbEpk50RCs&list=PLkz_y24mlSJY0Zh22f4n_sOvhObBaY1yL&index=11 
+## 12th Day:
+### **Tensors in Machine Learning**  
+
+In **Machine Learning (ML)**, a **tensor** is a fundamental data structure that represents multi-dimensional arrays. They are essential in **deep learning** frameworks like **TensorFlow** and **PyTorch**, as they efficiently store and process large-scale numerical data.  
+
+### **Why Tensors?**  
+Tensors generalize scalars, vectors, and matrices to **N-dimensions**, making them versatile for ML computations, especially for deep learning models like **neural networks**.
+
+### **Types of Tensors**  
+| Tensor Type    | Definition | Example |
+|---------------|------------|---------|
+| **Scalar (0D Tensor)** | Single numerical value | `x = 5` |
+| **Vector (1D Tensor)** | A 1D array (list of numbers) | `[1, 2, 3]` |
+| **Matrix (2D Tensor)** | A table of numbers (rows & columns) | `[[1, 2], [3, 4]]` |
+| **3D Tensor** | A collection of matrices | `[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]` |
+| **ND Tensor (N-Dimensional)** | Generalization to more dimensions | Used in deep learning models |
+
+### **How Tensors are Used in ML?**  
+- **Storing Inputs & Outputs** → Images, text, audio, and tabular data are represented as tensors.  
+- **Computations** → Matrix operations, gradients, and transformations rely on tensors.  
+- **GPU Acceleration** → Tensors are optimized for parallel computing, making them ideal for **deep learning**.  
+
+### **Example in Python (Using PyTorch)**  
+```python
+import torch
+
+# Creating a 2D tensor (Matrix)
+tensor_matrix = torch.tensor([[1, 2], [3, 4]])
+print(tensor_matrix)
+```
+
+### **Conclusion**  
+Tensors are the backbone of **machine learning** and **deep learning**, making large-scale computations fast and efficient. 🚀

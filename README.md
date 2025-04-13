@@ -586,4 +586,59 @@ print(tensor_matrix)
 ```
 
 ### **Conclusion**  
-Tensors are the backbone of **machine learning** and **deep learning**, making large-scale computations fast and efficient. 🚀
+Tensors are the backbone of **machine learning** and **deep learning**, making large-scale computations fast and efficient. 🚀 
+### Day 23
+🎯 Feature Engineering
+Feature engineering involves creating, transforming, selecting, or extracting useful features from raw data to improve model performance.
+
+1️⃣ Feature Transformation
+Transforming raw data into a more suitable format for modeling.
+Includes:
+
+Missing Value Imputation
+Filling in missing data using methods like mean, median, or predictive models.
+
+Handling Categorical Features
+Converting text data (e.g., gender: "male", "female") into numerical format using:
+
+One-hot encoding
+
+Label encoding
+
+Outlier Detection
+Identifying and handling unusually high or low values (which can distort model training).
+
+Feature Scaling
+Standardizing or normalizing numerical features to ensure all variables contribute equally.
+Examples:
+
+Min-Max Scaling
+
+Z-score Normalization
+
+2️⃣ Feature Construction
+Creating new features by combining or modifying existing ones to capture deeper patterns.
+Example:
+
+From "date of birth", construct "age"
+
+Combine "height" and "weight" to create "BMI"
+
+3️⃣ Feature Selection
+Choosing only the most relevant features for the model to avoid overfitting and reduce complexity.
+Methods include:
+
+Correlation analysis
+
+Recursive Feature Elimination (RFE)
+
+Mutual information
+
+4️⃣ Feature Extraction
+Extracting latent information from raw data using methods like:
+
+PCA (Principal Component Analysis)
+
+Autoencoders
+
+Text vectorization (TF-IDF, word2vec)

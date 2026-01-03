@@ -1,4 +1,4 @@
-% IEEE Conference Paper Template - PART 1
+% IEEE Conference Paper Template 
 \documentclass[conference]{IEEEtran}
 
 % Packages
@@ -310,6 +310,17 @@ We rank features by each method, then compute an ensemble rank as the arithmetic
 \end{table}
 
 These 20 features achieve 78.9\% dimensionality reduction (95 $\rightarrow$ 20) while capturing the most discriminative patterns. The selected features span multiple categories: timing features (bwd\_iat.min, bwd\_iat.avg), window size features (bwd\_init\_window\_size, fwd\_init\_window\_size), payload characteristics (fwd\_pkts\_payload.min, flow\_pkts\_payload.std), and service types (service\_http, service\_ssl), providing a comprehensive representation of network traffic behavior.
+As shown in Fig.~\ref{fig:correlation_heatmap}, several features exhibit strong positive and negative correlations.
+
+
+\begin{figure*}[t!]
+    \centering
+    \includegraphics[width=0.80\textwidth]{Corr_heatmap.png}
+    \caption{Correlation Heatmap of the Top 20 Selected Features}
+    \label{fig:correlation_heatmap}
+\end{figure*}
+
+
 
 \subsection{Model Training and Hyperparameter Optimization}
 To preserve class balance, we divided the balanced dataset (304,616 samples, 20 features) into 70\% training (213,231) and 30\% testing (91,385) using stratification. RandomizedSearchCV with five-fold cross-validation was used to train six machine learning models:
@@ -385,7 +396,8 @@ We also created an ensemble voting classifier combining the three best-performin
 \section{Experimental Results and Analysis}
 
 \subsection{Overall Model Performance}
-Table \ref{tab:ml_results} presents comprehensive evaluation metrics for all machine learning models. Random Forest achieves the best performance across all metrics: 99.94\% accuracy, 99.94\% precision, 99.94\% recall, 99.94\% F1-score, and perfect 1.0000 ROC-AUC. The ensemble voting classifier matches this performance, validating that combining complementary models can equal or exceed individual model performance through error diversity and collective decision making.
+Comprehensive assessment metrics for every machine learning model are shown in
+Table \ref{tab:ml_results}.With 99.94\% accuracy, 99.94\% precision, 99.94\% recall, 99.94\% F1-score, and a flawless 1.0000 ROC-AUC, Random Forest outperforms all other criteria. This performance is matched by the ensemble voting classifier, confirming that combining complimentary models may match or surpass individual model performance through error diversity and group decision making.
 
 \begin{table}[htbp]
 \caption{Machine Learning Model Performance Comparison}
@@ -407,7 +419,8 @@ Ensemble & \textbf{99.94} & \textbf{99.94} & \textbf{99.94} & \textbf{99.94} \\
 \label{tab:ml_results}
 \end{table}
 
-Table \ref{tab:dl_results} shows deep learning results. LSTM achieves the best deep learning performance (99.67\% accuracy), demonstrating its effectiveness in modeling temporal patterns in network traffic data. The bidirectional architecture allows it to consider context from both directions, improving pattern recognition. However, machine learning approaches slightly outperform deep learning, likely because tabular data with independent features benefits more from tree-based methods than from architectures originally designed for sequential or spatial data like images or text.
+Results from deep learning are displayed in Table \ref{tab:dl_results}.LSTM demonstrates its efficacy in predicting temporal patterns in network traffic data by achieving the greatest deep learning performance (99.67% accuracy).
+It can take into account context from both sides because to its bidirectional architecture, which enhances pattern recognition. However, machine learning techniques perform somewhat better than deep learning, perhaps because tree-based techniques are more beneficial for tabular data with independent properties than for architectures that were initially created for sequential or spatial data like text or pictures.
 
 \begin{table}[htbp]
 \caption{Deep Learning Model Performance Comparison}
@@ -478,26 +491,9 @@ The near-perfect classification demonstrates several key points:
 \textbf{Other:} This diverse category (including legitimate traffic and ARP spoofing) achieved 99.92\% accuracy, occasionally confused with Scanning due to overlapping reconnaissance-like patterns in some legitimate discovery protocols.
 
 \subsection{SHAP-Based Explainability Analysis}
-To understand which features drive model decisions, we applied SHAP TreeExplainer to Random Forest, computing Shapley values for 1,000 randomly selected test samples. Figure \ref{fig:shap_summary} shows the mean absolute SHAP values for each feature.
+To understand which features drive model decisions, we used SHAP TreeExplainer to Random Forest, computing Shapley values for 1,000 randomly selected test samples. Figure \ref{fig:shap_analysis} shows the SHAP analysis for Random Forest for each feature.
 
-\begin{figure*}[t!]
-\centering
-\begin{subfigure}{0.49\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/shap_summary_plot.png}
-    \caption{SHAP Summary Plot: Feature Importance}
-    \label{fig:shap_summary}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.49\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{figures/shap_force_plot.png}
-    \caption{SHAP Force Plot: Individual Prediction Explanation}
-    \label{fig:shap_force}
-\end{subfigure}
-\caption{SHAP Analysis of Random Forest Model}
-\label{fig:shap_analysis}
-\end{figure*}
+
 
 Table \ref{tab:shap_contrib} quantifies the contribution of top features to model predictions.
 
@@ -524,38 +520,38 @@ Table \ref{tab:shap_contrib} quantifies the contribution of top features to mode
 \label{tab:shap_contrib}
 \end{table}
 
+\begin{figure*}[t!]
+    \centering
+    \includegraphics[width=1.05\textwidth]{SHAP_RF.png}
+    \caption{SHAP Analysis of Random Forest Model: SHAP Force Plot for Individual Prediction Explanation}
+    \label{fig:shap_analysis}
+\end{figure*}
+
+
+
+
 The analysis reveals several critical insights:
 
-\textbf{Forward packet payload minimum} (18.42\% contribution) is the most influential feature. Attacks often send minimal-size packets during reconnaissance or to maximize packet rate during DDoS floods. Legitimate traffic typically has larger, more variable payload sizes.
+\textbf{Forward packet payload minimum} (18.42\% contribution) is the most influential feature.In order to increase packet rate during DDoS floods or during reconnaissance, attacks frequently transmit little packets.Payload sizes in legitimate traffic are usually higher and more varied.
 
-\textbf{Payload bytes per second} (13.63\%) captures traffic intensity and is a strong indicator of attack behavior. DDoS attacks exhibit extremely high values (saturating bandwidth), while scanning shows characteristic low, steady patterns. Legitimate IoT traffic falls in between with predictable patterns.
+\textbf{Payload bytes per second} (13.63\%) are a good way to measure traffic intensity; normal IoT traffic stays in a predictable mid-range, DDoS assaults indicate extremely high bandwidth saturation, and scanning shows low and stable patterns.
 
-\textbf{Backward initial window size} (9.90\%) reflects the server's response characteristics. Legitimate services typically advertise predictable TCP window sizes optimized for their expected traffic patterns, while attacks may trigger anomalous responses or connection failures with different window size patterns.
+\textbf{Backward initial window size} (9.90\%) is a reflection of server response behavior. While assaults frequently result in unusual window patterns or connection failures, respectable services offer consistent, optimal TCP window sizes.
 
-\textbf{Timing features} (bwd\_iat.min 7.70\%, bwd\_iat.avg 4.71\%) are crucial discriminators. Attack timing patterns differ fundamentally from normal traffic due to automated attack tools operating with different timing characteristics than human-driven or regular automated IoT communications.
+\textbf{Timing features} (bwd\_iat.min 7.70\%, bwd\_iat.avg 4.71\%) are also the most important discriminators.Attack timing patterns differ fundamentally from normal traffic due to automated attack tools operating with different timing characteristics than human-driven or regular automated IoT communications.
 
-These findings align excellently with cybersecurity domain knowledge, validating that our model learns meaningful attack indicators rather than spurious correlations or artifacts. Security practitioners can use these insights to design more effective intrusion detection rules, prioritize monitoring resources, and explain detection decisions to stakeholders.
+
+These results provide actionable insights for creating efficient intrusion detection rules, setting priorities for monitoring efforts, and communicating detection decisions to stakeholders.They also confirm that the model captures meaningful attack indicators rather than spurious artifacts, which is strongly consistent with established cybersecurity knowledge.
 
 \subsection{Impact of Imbalance Handling}
-To quantify the contribution of AA-DG-TC-CIBS, we compare performance with and without balancing:
+To quantify the contribution of AA-DG-TC-CIBS Algorithm, we compare performance with and without balancing:
 
 \textbf{Without balancing (original data):} Random Forest achieves 98.23\% overall accuracy but only 12.5\% recall for BruteForce class—the model essentially ignores this critical minority attack in favor of maximizing accuracy on the dominant DDoS class.
 
-\textbf{With AA-DG-TC-CIBS:} BruteForce recall improves dramatically to 99.97\%, demonstrating that proper imbalance handling is absolutely critical for detecting rare but important attacks. This 87.5 percentage point improvement in minority class recall occurred with minimal impact on majority class performance.
+\textbf{With AA-DG-TC-CIBS:} BruteForce recall improves significantly to 99.97\%, showing that proper imbalance handling is absolutely critical for detecting rare but important attacks. This 87.5 percentage point improvement in minority class recall occurred with minimal impact on majority class performance.
 
 \textbf{AA-DG-TC-CIBS vs. SMOTE-ENN:} While both methods achieve similar overall accuracy (99.85\% each on validation data), AA-DG-TC-CIBS produces better-calibrated confidence scores (mean calibration error 0.0023 vs. 0.0041 for SMOTE-ENN), suggesting it preserves the original data distribution more faithfully through density-guided sampling rather than simple interpolation.
 
-\subsection{Feature Selection Ablation Study}
-We evaluate the contribution of ensemble feature selection by training Random Forest with different feature subsets:
-
-\begin{itemize}
-\item \textbf{All 95 features:} 99.72\% accuracy, 8.3 minutes training time, slight overfitting evident in training-test gap
-\item \textbf{Top 20 ensemble features:} 99.94\% accuracy, 2.2 minutes training time, better generalization
-\item \textbf{Top 20 SHAP-only:} 99.89\% accuracy—good but not optimal
-\item \textbf{Top 20 ANOVA-only:} 99.86\% accuracy—misses some interactions
-\item \textbf{Top 20 Chi-Square-only:} 99.83\% accuracy—weaker on continuous features
-\item \textbf{Top 20 RFE-only:} 99.88\% accuracy—good but benefits from ensemble
-\end{itemize}
 
 The ensemble approach achieves the best accuracy while reducing training time by 73\%. Individual selection methods perform well but slightly worse, confirming the value of combining multiple complementary perspectives. The improvement despite using fewer features demonstrates successful removal of redundant and noisy features.
 

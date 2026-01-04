@@ -1,4 +1,4 @@
-% IEEE Conference Paper Template 
+% IEEE Conference Paper Template - PART 1
 \documentclass[conference]{IEEEtran}
 
 % Packages
@@ -57,11 +57,7 @@ Internet of Things (IoT), Cyber Attack Detection,Explainable Artificial Intellig
 
 % I. INTRODUCTION
 \section{Introduction}
-\cite{ref1}.
-
-
-
-Deep learning and machine learning have become viable substitutes, able to recognize intricate patterns in network traffic and adjust to changing threats [2].
+Deep learning and machine learning have become viable substitutes, able to recognize intricate patterns in network traffic and adjust to changing threats.
 Nevertheless, there are a lot of obstacles when using these methods for IoT security. Extreme class imbalance is seen in real-world attack datasets, where malicious samples are vastly outnumbered by benign traffic. Due to this mismatch, models become biased toward majority classes, which lowers the detection rates of crucial but infrequent attacks.
 
 Furthermore, IoT network traffic data is intrinsically high-dimensional, with thousands of elements pertaining to timing patterns, protocol details, and packet properties.
@@ -566,9 +562,9 @@ Table \ref{tab:comparison} compares our approach with recent work on IoT attack 
 \toprule
 \textbf{Method} & \textbf{Dataset} & \textbf{Acc.} & \textbf{F1} \\
 \midrule
-Kumar et al. \cite{ref4} & IoT-23 & 97.30\% & 96.80\% \\
-Li et al. \cite{ref13} & NSL-KDD & 98.10\% & 97.90\% \\
-Ahmed et al. \cite{ref14} & UNSW-NB15 & 99.10\% & 98.90\% \\
+Phalaagae et al. \cite{ref4} & IoTID20 & 99.12\% & 99.08\% \\
+Hossain et al. \cite{ref13} & CIC IoT-DIAD 2024 & 99.53\% & 99.53\% \\
+Amine et al. \cite{ref14} & IoT-23 & 72.31\% & - \\
 \textbf{Ours (RF)} & RT\_IOT2022 & \textbf{99.94\%} & \textbf{99.94\%} \\
 \bottomrule
 \end{tabular}
@@ -579,22 +575,20 @@ Our Random Forest model outperforms all recent methods. The superior performance
 
 % V. CONCLUSION
 \section{Conclusion and Future Work}
-This paper presented a comprehensive machine learning framework for multi-class attack detection in IoT networks, addressing the critical challenges of class imbalance, high dimensionality, and model interpretability through an integrated approach.
+This paper presented a wide machine learning and deep learning framework for multiclass cyber attack detection in IoT devices. We used an integrated strategy to handle the crucial issues of high dimensionality, class imbalance, and model interpretability.
 
-Our key contributions and findings include:
+Our main contributions and conclusions include:
 
-\textbf{Novel Imbalance Handling:} The AA-DG-TC-CIBS algorithm successfully transformed an extremely imbalanced dataset (2572:1 ratio) into a perfectly balanced one (1:1 ratio, 304,616 total samples) while preserving topological structure through density-guided sampling. This enabled models to achieve high recall (99.97\%) even for the rarest attack type (BruteForce), which
-would otherwise be completely ignored by standard training procedures.
+\textbf{Novel Imbalance Handling:}Using density-guided sampling, the AA-DG-TC-CIBS method transforms a severely unbalanced dataset (2572:1) into a balanced one (1:1), maintaining data structure and enabling extremely good recall (99.97\%) even for uncommon assaults like BruteForce.
 
-\textbf{Intelligent Feature Selection:} Our ensemble approach combining Chi-Square, ANOVA, RFE, and SHAP reduced features from 95 to 20 (78.9\% reduction) while actually improving accuracy from 99.72\% to 99.94\% and reducing training time by 73\%. This counterintuitive improvement demonstrates that careful feature selection removes noise and redundancy, enabling better generalization.
 
-\textbf{State-of-the-Art Performance:} Random Forest achieved 99.94\% accuracy, 99.94\% F1-score, and perfect 1.0000 ROC-AUC on the RT\_IOT2022 dataset, outperforming recent literature. The ensemble voting classifier matched this performance, demonstrating that model combination provides robust predictions across diverse test scenarios.
+\textbf{Intelligent Feature Selection:} Our ensemble way combining Chi-Square, ANOVA,RFE and SHAP reduced features from 95 to 20(reduced 78.9\%) improving accuracy from 99.72\% to 99.94\% and reducing training time by 73\%.This improvement shows how careful feature selection eliminates duplication and noise to improve generalization.
 
-\textbf{Actionable Explainability:} SHAP analysis revealed that forward packet payload minimum (18.42\%), payload bytes per second (13.63\%), and TCP window size features are most critical for attack detection. These insights align with cybersecurity domain knowledge and can guide feature engineering, detection rule design, and resource allocation for monitoring infrastructure.
+\textbf{State-of-the-Art Performance:} On RT\_IOT2022 dataset,Random Forest outperformed current research with 99.94\% accuracy, 99.94\% F1-score, and flawless 1.0000 ROC-AUC.This result was mirrored by the ensemble voting classifier, proving that model combination yields reliable predictions in a variety of test circumstances.
 
-\textbf{Computational Efficiency:} The 73\% reduction in training time while maintaining exceptional accuracy makes our approach suitable for deployment in resource-constrained IoT gateways and edge computing environments where computational resources are limited.
+\textbf{Actionable Explainability:} From SHAP analysis it is seen that forward packet payload minimum (18.42\%), payload bytes per second (13.63\%), and TCP window size features are the most influencial for attack detection.These insights may direct feature engineering, detection rule design, and resource allocation for infrastructure monitoring and are consistent with cybersecurity domain knowledge.
 
-Our work demonstrates that combining domain-aware preprocessing (attack-specific balancing), ensemble learning (multi-method feature selection, voting classifier), and explainable AI (SHAP) can achieve near-perfect IoT attack detection while remaining interpretable, efficient, and deployable in real-world security operations.
+Our research shows that near-perfect IoT attack detection can be achieved while maintaining interpretability, efficiency, and deployability in real-world security operations by combining domain-aware preprocessing (attack-specific balancing), ensemble learning (multi-method feature selection, voting classifier), and explainable AI (SHAP).
 
 \subsection{Future Directions}
 Several promising directions for future research include:
@@ -603,23 +597,15 @@ Several promising directions for future research include:
 
 \textbf{Online Learning:} Developing incremental learning mechanisms to adapt to evolving attack patterns without full model retraining would enable continuous protection against emerging threats. This requires careful design to prevent catastrophic forgetting while incorporating new attack signatures.
 
-\textbf{Federated Learning:} Extending our framework to federated settings where multiple organizations collaboratively train models while preserving data privacy could enhance collective IoT security. Privacy-preserving techniques like differential privacy and secure multi-party computation would protect sensitive network information.
 
 \textbf{Real-Time Deployment:} Implementing our pipeline in production intrusion detection systems and evaluating latency, throughput, memory footprint, and detection delay on actual IoT gateways and edge devices would validate practical feasibility.
 
-\textbf{Sample-Specific Explanations:} Extending SHAP analysis to provide per-prediction explanations for individual alerts, helping security analysts understand why specific traffic was flagged and prioritize incident response efforts.
 
-\textbf{Adversarial Robustness:} Evaluating model robustness against adversarial examples where attackers deliberately craft traffic to evade detection, and developing defense mechanisms to maintain security under adversarial conditions.
 
-% ACKNOWLEDGMENT
-\section*{Acknowledgment}
-This research was supported by the National Science Foundation under Grant No. CNS-XXXXXX. The authors would like to thank the anonymous reviewers for their valuable feedback and suggestions.
+
 
 % REFERENCES
 \begin{thebibliography}{99}
-
-\bibitem{ref1}
-A. Sivanathan et al., ``Classifying IoT Devices in Smart Environments Using Network Traffic Characteristics,'' \textit{IEEE Trans. Mobile Comput.}, vol. 18, no. 8, pp. 1745-1759, Aug. 2019.
 
 \bibitem{ref2}
 M. A. Ferrag et al., ``Deep Learning for Cyber Security Intrusion Detection: Approaches, Datasets, and Comparative Study,'' \textit{J. Inf. Security Appl.}, vol. 50, p. 102419, Feb. 2020.
@@ -628,7 +614,9 @@ M. A. Ferrag et al., ``Deep Learning for Cyber Security Intrusion Detection: App
 H. Liu and B. Lang, ``Machine Learning and Deep Learning Methods for Intrusion Detection Systems: A Survey,'' \textit{Appl. Sci.}, vol. 9, no. 20, p. 4396, Oct. 2019.
 
 \bibitem{ref4}
-P. Kumar et al., ``A Hybrid CNN-LSTM Model for IoT Network Intrusion Detection,'' in \textit{Proc. IEEE Int. Conf. Commun.}, 2021, pp. 1-6.
+P. Phalaagae, A. M. Zungeru, A. Yahya, B. Sigweni, and S. Rajalakshmi, 
+``A Hybrid CNN-LSTM Model With Attention Mechanism for Improved Intrusion Detection in Wireless IoT Sensor Networks,'' 
+\textit{IEEE Access}, vol. 13, pp. 57322--57341, 2025, doi: 10.1109/ACCESS.2025.3555861.
 
 \bibitem{ref5}
 M. A. Ferrag et al., ``Deep Learning-Based Intrusion Detection for Distributed Denial of Service Attack in IoT,'' \textit{IEEE Access}, vol. 8, pp. 149283-149295, 2020.
@@ -655,10 +643,14 @@ D. Slack et al., ``Fooling LIME and SHAP: Adversarial Attacks on Post-hoc Explan
 I. Sarhan et al., ``RT-IoT2022: A Network Intrusion Dataset for IoT and IIoT Systems,'' \textit{IEEE Dataport}, 2022.
 
 \bibitem{ref13}
-Z. Li et al., ``Intrusion Detection Using Convolutional Neural Networks for IoT Traffic,'' \textit{IEEE Internet Things J.}, vol. 7, no. 10, pp. 9889-9899, Oct. 2020.
+Md. A. Hossain,
+``Deep learning-based intrusion detection for IoT networks: a scalable and efficient approach,''
+\textit{EURASIP Journal on Information Security}, vol. 2025, no. 28, 2025, doi: 10.1186/s13635-025-00202-w.
 
 \bibitem{ref14}
-M. Ahmed et al., ``A Survey of Network Anomaly Detection Techniques,'' \textit{J. Network Comput. Appl.}, vol. 60, pp. 19-31, Jan. 2016.
+M. S. Amine, F. A. Nada, and K. M. Hosny,
+``Improved model for intrusion detection in the Internet of Things,''
+\textit{Scientific Reports}, vol. 15, no. 21547, 2025, doi: 10.1038/s41598-025-92852-6.
 
 \bibitem{ref15}
 J. Brownlee, ``Imbalanced Classification with Python: Better Metrics, Balance Skewed Classes, Cost-Sensitive Learning,'' Machine Learning Mastery, 2020.

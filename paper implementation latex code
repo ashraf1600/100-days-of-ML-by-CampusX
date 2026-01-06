@@ -22,7 +22,7 @@
 \begin{document}
 
 % Paper title
-\title{Advanced Attack Detection in IoT Networks using Ensemble Machine Learning and Explainable AI}
+\title{An Explainable Hybrid Ensemble Machine Learning and Deep Learning  Approach for Multiclass Cyber Attack Detection in Higly Imbalanced IoT Networks}
 
 % Author information
 \author{
@@ -81,17 +81,17 @@ The remainder of this paper is organized as follows: Section II reviews related 
 Recent research has explored various machine learning approaches for IoT attack detection.Karmous et al. \cite{ref1} proposed an IoT intrusion detection framework using supervised machine learning on the UNSW-NB15 dataset. They evaluated Random Forest, SVM, kNN, and Gaussian Naïve Bayes, finding that kNN offered the best trade-off between accuracy (97.5\%) and training time (0.03 seconds), making it suitable for real-time IoT environments despite RF achieving higher accuracy (99.84\%) with considerably longer training time (12.75 seconds). Their framework emphasized low latency and real-time detection capabilities using live packet capture and 5-fold cross-validation.
 
 
-Phalaagae et al. \cite{ref4} developed a hybrid CNN-LSTM model with attention mechanism and dynamic PSO for IoT intrusion detection, achieving 99.87\% accuracy with LSTM on IoTID20. The attention mechanism reduced false positives to 120 and false negatives to 2,135, though it increased computational overhead for resource-limited IoT devices.
+Phalaagae et al. \cite{ref2} developed a hybrid CNN-LSTM model with attention mechanism and dynamic PSO for IoT intrusion detection, achieving 99.87\% accuracy with LSTM on IoTID20. The attention mechanism reduced false positives to 120 and false negatives to 2,135, though it increased computational overhead for resource-limited IoT devices.
 
 \subsection{Handling Class Imbalance}
-Class imbalance is a pervasive challenge in cybersecurity datasets. The most widely used technique is SMOTE (Synthetic Minority Over-sampling Technique) \cite{ref6}, which generates synthetic samples by interpolating between minority class instances. Variants like SMOTE-ENN combine oversampling with edited nearest neighbors to remove noisy samples. However, these generic approaches do not consider domain-specific characteristics such as attack severity or topological structure of different attack types in feature space.
+Class imbalance is a pervasive challenge in cybersecurity datasets. The most widely used technique is SMOTE (Synthetic Minority Over-sampling Technique) \cite{ref3}, which generates synthetic samples by interpolating between minority class instances. Variants like SMOTE-ENN combine oversampling with edited nearest neighbors to remove noisy samples. However, these generic approaches do not consider domain-specific characteristics such as attack severity or topological structure of different attack types in feature space.
 
 \subsection{Feature Selection and Dimensionality Reduction}
-Torabi et al. \cite{ref8} presented a comprehensive review on feature selection and ensemble techniques for intrusion detection systems, emphasizing the critical role of dimensionality reduction in improving detection accuracy and computational efficiency. They compared filter, wrapper, and embedded feature selection methods, finding that no single method consistently outperforms others across different datasets, which motivated the development of ensemble approaches combining multiple selection criteria. However, their review did not extensively address the challenge of imbalanced datasets in IoT botnet detection scenarios.Hermosilla et al. \cite{ref9} compared SHAP and LIME explainable AI techniques for intrusion detection using XGBoost and TabNet models, emphasizing the importance of interpretability in forensic cybersecurity applications.
+Torabi et al. \cite{ref4} presented a comprehensive review on feature selection and ensemble techniques for intrusion detection systems, emphasizing the critical role of dimensionality reduction in improving detection accuracy and computational efficiency. They compared filter, wrapper, and embedded feature selection methods, finding that no single method consistently outperforms others across different datasets, which motivated the development of ensemble approaches combining multiple selection criteria. However, their review did not extensively address the challenge of imbalanced datasets in IoT botnet detection scenarios.Hermosilla et al. \cite{ref5} compared SHAP and LIME explainable AI techniques for intrusion detection using XGBoost and TabNet models, emphasizing the importance of interpretability in forensic cybersecurity applications.
 \subsection{Explainable AI in Cybersecurity}
-Bin Hulayyil et al. \cite{ref10} developed an explainable IDS framework for IoT systems combining ML classifiers with SHAP and causal inference techniques to detect Ripple20 vulnerabilities, addressing interpretability challenges in ML-based intrusion detection.
+Bin Hulayyil et al. \cite{ref6} developed an explainable IDS framework for IoT systems combining ML classifiers with SHAP and causal inference techniques to detect Ripple20 vulnerabilities, addressing interpretability challenges in ML-based intrusion detection.
 
-Sharma et al. integrated explainable artificial intelligence into a deep learning–based IoT intrusion detection framework by employing LIME and SHAP to interpret DNN and CNN predictions. Their approach provides both local and global explanations, enabling the identification of key features influencing attack detection on the NSL-KDD and UNSW-NB15 datasets, thereby improving transparency and trust in IoT security models \cite{11}.
+Sharma et al. integrated explainable artificial intelligence into a deep learning–based IoT intrusion detection framework by employing LIME and SHAP to interpret DNN and CNN predictions. Their approach provides both local and global explanations, enabling the identification of key features influencing attack detection on the NSL-KDD and UNSW-NB15 datasets, thereby improving transparency and trust in IoT security models \cite{7}.
 
 % III. METHODOLOGY
 \section{Methodology}
@@ -100,13 +100,13 @@ Data preprocessing,attack taxonomy \& class merging,class imbalance handling,Bes
 
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=\textwidth]{paper.png}
+\includegraphics[width=\textwidth]{IOT_Recovered.drawio.png}
 \caption{Complete Framework Methodology Pipeline}
 \label{fig:methodology}
 \end{figure*}
 
 \subsection{Dataset Description and Initial Analysis}
-We used the RT\_IOT2022 dataset\cite{ref12},from UCI Machine Learning repository, a huge collection of IoT network traffic captured from real IoT devices including MQTT publishers, smart bulbs, and various network services. The dataset contains 123,117 samples with 85 features derived from network packet analysis.
+We used the RT\_IOT2022 dataset\cite{ref8},from UCI Machine Learning repository, a huge collection of IoT network traffic captured from real IoT devices including MQTT publishers, smart bulbs, and various network services. The dataset contains 123,117 samples with 85 features derived from network packet analysis.
 
 Table \ref{tab:dataset_overview} provides an overview of the dataset structure.Features are categorized into several groups: flow-based characteristics (duration, packet counts), packet-based metrics (payload sizes, header information), temporal features (inter-arrival times), statistical measures (mean, standard deviation), and protocol information.
 
@@ -566,9 +566,9 @@ Table \ref{tab:comparison} compares our approach with recent work on IoT attack 
 \toprule
 \textbf{Method} & \textbf{Dataset} & \textbf{Acc.} & \textbf{F1} \\
 \midrule
-Phalaagae et al. \cite{ref4} & IoTID20 & 99.12\% & 99.08\% \\
-Hossain et al. \cite{ref13} & CIC IoT-DIAD 2024 & 99.53\% & 99.53\% \\
-Amine et al. \cite{ref14} & IoT-23 & 72.31\% & - \\
+Phalaagae et al. \cite{ref2} & IoTID20 & 99.12\% & 99.08\% \\
+Hossain et al. \cite{ref9} & CIC IoT-DIAD 2024 & 99.53\% & 99.53\% \\
+Amine et al. \cite{ref10} & IoT-23 & 72.31\% & - \\
 \textbf{Ours (RF)} & RT\_IOT2022 & \textbf{99.94\%} & \textbf{99.94\%} \\
 \bottomrule
 \end{tabular}
@@ -613,74 +613,82 @@ Several promising directions for future research include:
 \bibitem{ref1}
 N. Karmous, M. Ould-Elhassen Aoueileyine, M. Abdelkader, and N. Youssef, "IoT Real-Time Attacks Classification Framework Using Machine Learning," in 2022 IEEE Ninth International Conference on Communications and Networking (ComNet), Hammamet, Tunisia, 2022, pp. 1-5, doi: 10.1109/ComNet55492.2022.9998441.
 
+% \bibitem{ref2}
+% M. A. Ferrag et al., ``Deep Learning for Cyber Security Intrusion Detection: Approaches, Datasets, and Comparative Study,'' \textit{J. Inf. Security Appl.}, vol. 50, p. 102419, Feb. 2020.
+
+% \bibitem{ref3}
+% H. Liu and B. Lang, ``Machine Learning and Deep Learning Methods for Intrusion Detection Systems: A Survey,'' \textit{Appl. Sci.}, vol. 9, no. 20, p. 4396, Oct. 2019.
+
 \bibitem{ref2}
-M. A. Ferrag et al., ``Deep Learning for Cyber Security Intrusion Detection: Approaches, Datasets, and Comparative Study,'' \textit{J. Inf. Security Appl.}, vol. 50, p. 102419, Feb. 2020.
-
-\bibitem{ref3}
-H. Liu and B. Lang, ``Machine Learning and Deep Learning Methods for Intrusion Detection Systems: A Survey,'' \textit{Appl. Sci.}, vol. 9, no. 20, p. 4396, Oct. 2019.
-
-\bibitem{ref4}
 P. Phalaagae, A. M. Zungeru, A. Yahya, B. Sigweni, and S. Rajalakshmi, 
 ``A Hybrid CNN-LSTM Model With Attention Mechanism for Improved Intrusion Detection in Wireless IoT Sensor Networks,'' 
 \textit{IEEE Access}, vol. 13, pp. 57322--57341, 2025, doi: 10.1109/ACCESS.2025.3555861.
 
-\bibitem{ref5}
-M. A. Ferrag et al., ``Deep Learning-Based Intrusion Detection for Distributed Denial of Service Attack in IoT,'' \textit{IEEE Access}, vol. 8, pp. 149283-149295, 2020.
-
-\bibitem{ref6}
+\bibitem{ref3}
 N. V. Chawla, K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer, ``SMOTE: Synthetic Minority Over-sampling Technique,'' \textit{J. Artif. Intell. Res.}, vol. 16, pp. 321--357, 2002.
 
-\bibitem{ref7}
-H. Zhang et al., ``Network Intrusion Detection Based on PSO-XGBoost Model,'' \textit{IEEE Access}, vol. 8, pp. 58392-58401, 2020.
 
-\bibitem{ref8}
+\bibitem{ref4}
 M. Torabi, N. I. Udzir, M. T. Abdullah, and R. Yaakob, ``A Review on Feature Selection and Ensemble Techniques for Intrusion Detection System,'' \textit{Int. J. Adv. Comput. Sci. Appl.}, vol. 9, no. 3, pp. 165--176, 2018.
 
-\bibitem{ref9}
+
+\bibitem{ref5}
 P. Hermosilla, S. Berríos, and H. Allende-Cid, ``Explainable AI for Forensic Analysis: A Comparative Study of SHAP and LIME in Intrusion Detection Models,'' \textit{[Journal Name]}, [Year]. [Add volume, issue, and pages when available]
 
-\bibitem{ref10}
+% \bibitem{ref5}
+% M. A. Ferrag et al., ``Deep Learning-Based Intrusion Detection for Distributed Denial of Service Attack in IoT,'' \textit{IEEE Access}, vol. 8, pp. 149283-149295, 2020.
+
+
+
+% \bibitem{ref7}
+% H. Zhang et al., ``Network Intrusion Detection Based on PSO-XGBoost Model,'' \textit{IEEE Access}, vol. 8, pp. 58392-58401, 2020.
+
+
+
+
+
+\bibitem{ref6}
 S. Bin Hulayyil, S. Li, and N. Saxena, ``Explainable AI-based intrusion detection in IoT systems,'' \textit{[Journal Name]}, [Year]. [Add volume, issue, and pages when available]
 
-\bibitem{11}
+\bibitem{7}
 B. Sharma, L. Sharma, C. Lal, and S. Roy,
 ``Explainable artificial intelligence for intrusion detection in IoT networks: A deep learning based approach,''\textit{Journal of Network and Computer Applications},
 vol. 215, pp. 103648, 2023.
 
 
-\bibitem{ref12}
+\bibitem{ref8}
 I. Sarhan, M. Layeghy, N. Moustafa, and M. Portmann,
 ``RT-IoT2022: A Network Intrusion Dataset for IoT and IIoT Systems,''
 ,''\textit{Dataset, UCI Machine Learning Repository,},2022
 
 
-\bibitem{ref13}
+\bibitem{ref9}
 Md. A. Hossain,
 ``Deep learning-based intrusion detection for IoT networks: a scalable and efficient approach,''
 \textit{EURASIP Journal on Information Security}, vol. 2025, no. 28, 2025, doi: 10.1186/s13635-025-00202-w.
 
-\bibitem{ref14}
+\bibitem{ref10}
 M. S. Amine, F. A. Nada, and K. M. Hosny,
 ``Improved model for intrusion detection in the Internet of Things,''
 \textit{Scientific Reports}, vol. 15, no. 21547, 2025, doi: 10.1038/s41598-025-92852-6.
 
-\bibitem{ref15}
-J. Brownlee, ``Imbalanced Classification with Python: Better Metrics, Balance Skewed Classes, Cost-Sensitive Learning,'' Machine Learning Mastery, 2020.
+% \bibitem{ref15}
+% J. Brownlee, ``Imbalanced Classification with Python: Better Metrics, Balance Skewed Classes, Cost-Sensitive Learning,'' Machine Learning Mastery, 2020.
 
-\bibitem{ref16}
-F. Pedregosa et al., ``Scikit-learn: Machine Learning in Python,'' \textit{J. Mach. Learn. Res.}, vol. 12, pp. 2825-2830, 2011.
+% \bibitem{ref16}
+% F. Pedregosa et al., ``Scikit-learn: Machine Learning in Python,'' \textit{J. Mach. Learn. Res.}, vol. 12, pp. 2825-2830, 2011.
 
-\bibitem{ref17}
-T. Chen and C. Guestrin, ``XGBoost: A Scalable Tree Boosting System,'' in \textit{Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discov. Data Min.}, 2016, pp. 785-794.
+% \bibitem{ref17}
+% T. Chen and C. Guestrin, ``XGBoost: A Scalable Tree Boosting System,'' in \textit{Proc. 22nd ACM SIGKDD Int. Conf. Knowl. Discov. Data Min.}, 2016, pp. 785-794.
 
-\bibitem{ref18}
-A. Paszke et al., ``PyTorch: An Imperative Style, High-Performance Deep Learning Library,'' in \textit{Proc. NeurIPS}, 2019, pp. 8024-8035.
+% \bibitem{ref18}
+% A. Paszke et al., ``PyTorch: An Imperative Style, High-Performance Deep Learning Library,'' in \textit{Proc. NeurIPS}, 2019, pp. 8024-8035.
 
-\bibitem{ref19}
-R. A. R. Ashfaq et al., ``Fuzziness Based Semi-Supervised Learning Approach for Intrusion Detection System,'' \textit{Inf. Sci.}, vol. 378, pp. 484-497, 2017.
+% \bibitem{ref19}
+% R. A. R. Ashfaq et al., ``Fuzziness Based Semi-Supervised Learning Approach for Intrusion Detection System,'' \textit{Inf. Sci.}, vol. 378, pp. 484-497, 2017.
 
-\bibitem{ref20}
-Y. Xin et al., ``Machine Learning and Deep Learning Methods for Cybersecurity,'' \textit{IEEE Access}, vol. 6, pp. 35365-35381, 2018.
+% \bibitem{ref20}
+% Y. Xin et al., ``Machine Learning and Deep Learning Methods for Cybersecurity,'' \textit{IEEE Access}, vol. 6, pp. 35365-35381, 2018.
 
 \end{thebibliography}
 

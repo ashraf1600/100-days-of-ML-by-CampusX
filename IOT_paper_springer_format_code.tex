@@ -27,30 +27,25 @@
 
 \begin{document}
 \mainmatter              % start of a contribution
-%
 \title{An Explainable Machine Learning and Ensemble Voting Classifier for Cyber Attack Detection in Highly Imbalanced IoT Networks}
-%
-\titlerunning{Cyber Attack Detection in IoT}}  % abbreviated title (for running head)
-%                                     also used for the TOC unless
-%                                     \toctitle is used
-%
-% \author{Ivar Ekeland\inst{1} \and Roger Temam\inst{2}
-% Jeffrey Dean \and David Grove \and Craig Chambers \and Kim~B.~Bruce \and
-% Elsa Bertino}
-% %
-% \authorrunning{Ivar Ekeland et al.} % abbreviated author list (for running head)
-% %
-% %%%% list of authors for the TOC (use if author list has to be modified)
-% \tocauthor{Ivar Ekeland, Roger Temam, Jeffrey Dean, David Grove,
-% Craig Chambers, Kim B. Bruce, and Elisa Bertino}
-% %
-% \institute{Princeton University, Princeton NJ 08544, USA,\\
-% \email{I.Ekeland@princeton.edu},\\ WWW home page:
-% \texttt{http://users/\homedir iekeland/web/welcome.html}
-% \and
-% Universit\'{e} de Paris-Sud,
-% Laboratoire d'Analyse Num\'{e}rique, B\^{a}timent 425,\\
-% F-91405 Orsay Cedex, France}
+\titlerunning{Cyber Attack Detection in IoT}  % abbreviated title (for running head)
+
+\author{
+    Ashraf-Ul-Islam\inst{1} \and 
+    Towhidul Islam\inst{2} \and 
+    Mahfuzulhoq Chowdhury\inst{3}
+}
+
+\authorrunning{Ashraf-Ul-Islam et al.} % abbreviated author list for running head
+
+\tocauthor{Ashraf-Ul-Islam, Towhidul Islam, Mahfuzulhoq Chowdhury} % for TOC
+
+\institute{
+    Dept. of Computer Science and Engineering, \\
+    Chittagong University of Engineering and Technology (CUET), Bangladesh \\
+    \email{u2104096@student.cuet.ac.bd, u2104023@student.cuet.ac.bd, mahfuzcsecuet@yahoo.com}
+}
+
 
 \maketitle              % typeset the title of the contribution
 
@@ -88,7 +83,7 @@ This section discusses the use of ML and DL to forecast different cyber attacks.
 \section{PROPOSED SCHEME}
 The methodologies of this work along with detailed steps are illustrated in this section with great details.
 \subsection{System Model}
-Figure~\ref{fig:methodology} 1 shows the suggested system framework for detecting cyber attacks via IoT networks. Four cyber professionals validate the cyber attack dataset that was gathered from Kaggle. The data pretreatment procedures, including data cleaning, one-hot encoding, and standardization, were then carried out. The AA-DG-TC-CIBS algorithm is a recently proposed solution that addresses the dataset's class imbalance problem. Next, an ensemble method that includes RFE, chi-square, and ANOVA is used to identify the best features. Twenty percent of the data is validated. Fifty percent of the data is used for training. The remaining data will be used to evaluate the machine learning model. The remaining percentage is kept for validation data. Eight machine learning models are employed in this work for both training and testing. KNN, random forest, decision tree, XGBoost, LSTM, auto-encoder, transformer, and ensemble voting technique are the names of these machine learning models. The KNN, RF, and XGBoost models are employed in the ensemble soft voting classifier. Random search is used to fine-tune the ML model's hyper parameters. The ensemble voting classifier is the best prediction model based on the highest accuracy score and F1 value. Using an ensemble voting classifier, five cyber attack classes (DDoS, regular, spoofing, brute force, and scanning) are predicted. Additionally, SHAP is used as a XAI technique.
+Figure~\ref{fig:methodology} shows the suggested system framework for detecting cyber attacks via IoT networks. Four cyber professionals validate the cyber attack dataset that was gathered from Kaggle. The data pretreatment procedures, including data cleaning, one-hot encoding, and standardization, were then carried out. The AA-DG-TC-CIBS algorithm is a recently proposed solution that addresses the dataset's class imbalance problem. Next, an ensemble method that includes RFE, chi-square, and ANOVA is used to identify the best features. Twenty percent of the data is validated. Fifty percent of the data is used for training. The remaining data will be used to evaluate the machine learning model. The remaining percentage is kept for validation data. Eight machine learning models are employed in this work for both training and testing. KNN, random forest, decision tree, XGBoost, LSTM, auto-encoder, transformer, and ensemble voting technique are the names of these machine learning models. The KNN, RF, and XGBoost models are employed in the ensemble soft voting classifier. Random search is used to fine-tune the ML model's hyper parameters. The ensemble voting classifier is the best prediction model based on the highest accuracy score and F1 value. Using an ensemble voting classifier, five cyber attack classes (DDoS, regular, spoofing, brute force, and scanning) are predicted. Additionally, SHAP is used as a XAI technique.
 
 \subsection{Dataset Preparation}
 The RT-IoT 2022 dataset, which includes traffic statistics and normal and problematic network behaviors from several IoT networks, was gathered via Kaggle \cite{ref31}. 123,117 samples with 83 features obtained from network packet analysis are included in the collection. An overview of the dataset structure is shown in Figure 2(a). Flow-based attributes (such as duration and packet counts), packet-based metrics (such as payload sizes and header information), temporal features (such as inter-arrival times), statistical measures, and protocol information are the several categories into which features are divided. The collection includes a number of distinct cyber attack types from different threat categories. Based on attack features and security concerns, the original 12 attack types are combined into 5 major classes in the proposed cyber attack taxonomy, which is depicted in Figure 2(b). Four cyber professionals complete the dataset labeling and validation process. DDoS, regular, spoofing, brute force, and scanning are the classes that are taken into consideration. The significant imbalance in the dataset classes is depicted in Figure 2(b). 77.32 percent of the samples belong to the DDoS class. 6.29 and 6.20 percent of samples are covered by the spoofing and scanning classes, respectively. 10.06 and.03 percent of samples are in the normal and brute-force groups, respectively. The dataset is then balanced using the AA-DG-TC-CIBS technique. Figures 3(a) and 3(b), respectively, depict the dataset balancing process. There are four components to the suggested class balancing algorithm.
@@ -105,7 +100,7 @@ Based on the top accuracy and F1 score evaluation process results the ensemble s
     \centering
     
     % Subfigure (a)
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figure/dataset_overview.png}
     
@@ -113,7 +108,7 @@ Based on the top accuracy and F1 score evaluation process results the ensemble s
     \end{subfigure}
     \hfill
     % Subfigure (b)
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.6\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figure/class_count.png}
         
@@ -132,7 +127,7 @@ Based on the top accuracy and F1 score evaluation process results the ensemble s
         \centering
         \includegraphics[width=\textwidth]{figure/Algo.png}
        
-        \label{fig:features}
+        \label{fig:algo1}
     \end{subfigure}
     \hfill
     % Subfigure (b)
@@ -140,18 +135,62 @@ Based on the top accuracy and F1 score evaluation process results the ensemble s
         \centering
         \includegraphics[width=\textwidth]{figure/algo_1.png}
         
-        \label{fig:attacks}
+        \label{fig:algo2}
     \end{subfigure}
     
     \caption{Class balancing (AA-DG-TC-CIBS) algorithm}
-    \label{fig:dataset}
+    \label{fig:algo}
 \end{figure}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figure/ensemble.png}
+    \label{fig:ensemble}
     \caption{Ensemble technique based feature selection}
 
 \end{figure}
+\newpage
+\begin{figure}[h]
+    \centering
+   
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{figure/hyperparameter_and_model_acc.png}
+        
+    \end{subfigure}
+    
+    \vspace{1cm}
+    
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{figure/Proposed model confusion matrix_(d)_SHAP analysis.png}
+       
+    \end{subfigure}
+   
+   \caption{\frenchspacing (a) Random search based tuning (ensemble), (b) Model comparison, (c) Proposed model confusion matrix, (d) SHAP analysis}
+    \label{fig:dataset}
+
+
+\end{figure}  
+
+\begin{table}[t]
+\caption{COMPARISON AMONG PROPOSED AND EXISTING WORK}
+\label{tab:comparison}
+\centering
+
+\begin{tabular}{lcccc}
+\hline
+Method & Accuracy & Precision  & Recall & F1 \\
+\hline
+Simhon et al., \cite{ref6}, GNN & 88.80\%  & 82.50\%  & 78.01\%  & 80.25\%  \\
+Soomro et al., \cite{ref9}, DFL& 98.70\%  & 98.80\% & 98.60\% & 98.70\% \\
+Sun et al.,\cite{ref11},LSTM, AE & 98.48\% & 98.40\% & 98.02\% & 98.21\% \\
+
+Proposed ensemble voting approach & 99.94\%  &  99.94\% &  99.94\% & 99.94\% \\
+\hline
+\end{tabular}
+
+\end{table}
+
 
 
 
@@ -160,12 +199,12 @@ Based on the top accuracy and F1 score evaluation process results the ensemble s
 \subsection{Model Selection, Hyper-parameter Tuning}
 
 Eight ML classifiers were tested in this work to determine the best prediction model. Appropriate hyper parameters are chosen using the random search method. The optimal hyper parameters for the ensemble voting classifier technique are given next in Figure 5(a). The evaluation results of the eight ML classifiers in terms of accuracy and other pertinent metrics are visualized in Figure 5(b). KNN, random forest, decision tree, XGBoost, LSTM, auto-encoder, transformer, and ensemble voting technique are the models that are being compared. For the prediction of five cyber attack classes, the ensemble voting classifier is chosen.
-The ensemble voting classifier includes the KNN, RF, and XGBoost. Along with the same precision and recall values, the suggested ensemble voting classifier provides the greatest accuracy value of 99.94 percent. The confusion matrix of the proposed ensemble voting classifier is captured in Figure 5(c). The plot indicated that accurate prediction values (true positive) and lower tales negative values are provided by the ensemble approach. The SHAP analysis for the ensemble voting method for each feature is displayed in Figure 5(d). According to the figure 5(d), bwd_iat.min and bwd_init_window_size had the greatest mean SHAP values, respectively.
+The ensemble voting classifier includes the KNN, RF, and XGBoost. Along with the same precision and recall values, the suggested ensemble voting classifier provides the greatest accuracy value of 99.94 percent. The confusion matrix of the proposed ensemble voting classifier is captured in Figure 5(c). The plot indicated that accurate prediction values (true positive) and lower tales negative values are provided by the ensemble approach. The SHAP analysis for the ensemble voting method for each feature is displayed in Figure 5(d). According to the figure 5(d), bwd\_iat.min and bwd\_init\_window\_size had the greatest mean SHAP values, respectively.
 
 
 \section{RESULTS AND ANALYSIS}
 
-The results of the suggested ensemble voting classifier were compared to those of the existing works [6], [9], and [11] in Table I. According on the comparison results, the suggested ensemble voting classifier outperformed previous comparable studies by at least 1.24\% in accuracy and 1.1\% in precision. The ensemble voting approach's integration of complementing models can lower error and increase the precision of cyber attack class prediction. The use of the AA-DG-TC-CIBS methodology for class imbalance reduction, ensemble feature selection, random search-based parameter tuning, cross validation, data preprocessing and best ML model selection is important factor contributing to the excellent outcomes of the suggested method.This work used suggestions from cyber experts to validate the dataset. Missing and null value management, appropriate encoding, and standards are all part of the preprocessing process. Additionally, this technique chooses appropriate features for model training. SHAP is used to explain feature impact and model performance.
+The results of the suggested ensemble voting classifier were compared to those of the existing works \cite{ref6}, \cite{ref9}, and \cite{ref11} in Table ~ref{tab:comparison}. According on the comparison results, the suggested ensemble voting classifier outperformed previous comparable studies by at least 1.24\% in accuracy and 1.1\% in precision. The ensemble voting approach's integration of complementing models can lower error and increase the precision of cyber attack class prediction. The use of the AA-DG-TC-CIBS methodology for class imbalance reduction, ensemble feature selection, random search-based parameter tuning, cross validation, data preprocessing and best ML model selection is important factor contributing to the excellent outcomes of the suggested method.This work used suggestions from cyber experts to validate the dataset. Missing and null value management, appropriate encoding, and standards are all part of the preprocessing process. Additionally, this technique chooses appropriate features for model training. SHAP is used to explain feature impact and model performance.
 
 \section{CONCLUSION}
 An ensemble voting classifier-based system for DDoS, brute force, scanning, normal, and spoofing attack detection in IoT networks was introduced in this paper. The dataset is preprocessed using appropriate encoding and standardization methods and verified by cyber professionals. The novel class imbalance handling method used in this work is called AA-DG-TC-CIBS. For optimal feature selection, an ensemble feature selection method utilizing chi-square, ANOVA, and RFE is employed. Eight machine learning classifiers are evaluated for their ability to identify cyber attacks in Internet of Things datasets. Out of all the techniques, the ensemble voting classifier (KNN, RF, and XGBoost) provides the best prediction accuracy. The proposed ensemble voting method provides at least 1.24 percent higher F1 score and accuracy value than previous efforts, with 99.94 percent accuracy and precision value. This study uses the SHAP method for feature impact analysis and models that explain ability. Future research projects could include predicting zero-day attacks, malware, phishing, and SQL injection attacks using federated learning; analyzing security threats using LLM; analyzing security threats for quantum networks using DRL; and predicting malware in images and videos using DL and IoT

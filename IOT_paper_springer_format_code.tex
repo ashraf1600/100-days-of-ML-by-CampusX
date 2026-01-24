@@ -1,0 +1,281 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a proceedings volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{svproc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{url}  
+\usepackage{subcaption}
+% For [H] positioning (optional)
+
+% RECOMMENDED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     % For [H] positioning (optional)
+%
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+% to typeset URLs, URIs, and DOIs
+\usepackage{hyperref}  % for clickable references
+\usepackage{url}
+\def\UrlFont{\rmfamily}
+
+\begin{document}
+\mainmatter              % start of a contribution
+%
+\title{An Explainable Machine Learning and Ensemble Voting Classifier for Cyber Attack Detection in Highly Imbalanced IoT Networks}
+%
+\titlerunning{Cyber Attack Detection in IoT}}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+% \author{Ivar Ekeland\inst{1} \and Roger Temam\inst{2}
+% Jeffrey Dean \and David Grove \and Craig Chambers \and Kim~B.~Bruce \and
+% Elsa Bertino}
+% %
+% \authorrunning{Ivar Ekeland et al.} % abbreviated author list (for running head)
+% %
+% %%%% list of authors for the TOC (use if author list has to be modified)
+% \tocauthor{Ivar Ekeland, Roger Temam, Jeffrey Dean, David Grove,
+% Craig Chambers, Kim B. Bruce, and Elisa Bertino}
+% %
+% \institute{Princeton University, Princeton NJ 08544, USA,\\
+% \email{I.Ekeland@princeton.edu},\\ WWW home page:
+% \texttt{http://users/\homedir iekeland/web/welcome.html}
+% \and
+% Universit\'{e} de Paris-Sud,
+% Laboratoire d'Analyse Num\'{e}rique, B\^{a}timent 425,\\
+% F-91405 Orsay Cedex, France}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+Because billions of vulnerable networked devices create a huge attack surface for data breaches, service outages, and financial loss, cyber threat detection in the Internet of Things is crucial. Prior research could not provide a viable machine learning framework for accurately predicting multiclass cyber threats in IoT networks using DDoS, scanning, brute force, normal, and spoofing attacks. XAI, ensemble feature selection, and class balancing solving techniques are lacking. This study presents a DDoS, scanning, brute force, normal, and spoofing attack prediction technique based on ensemble voting classifiers (KNN, RF, and XGBoost). The best cyber threat prediction model is chosen by testing a total of eight machine learning classifiers. This work uses the RFE-ANOVA-chi square based ensemble method for feature selection, the AA-DG-TC-CIBS strategy for class imbalance solving, random search for tuning parameters, and appropriate data preprocessing. This paper uses the SHAP approach for models explain ability outcomes. The findings demonstrated that the proposed ensemble voting classifier provides at least 1.24 percent more accuracy than current techniques, with 99.94 percent accuracy value. \dots
+% We would like to encourage you to list your keywords within
+% the abstract section using the \keywords{...} command.
+\keywords{Internet of Things, Cyber Threat Detection, Ensemble Voting Classifier, Random Search, SHAP.}
+\end{abstract}
+%
+\section{INTRODUCTION }
+%
+Because of the growing number of connected devices, the sensitive data they handle, and the critical systems they regularly monitor, IoT security is essential to averting cyber attacks \cite{ref1}. Cyber attacks and abnormalities are a major problem with IoT networks. IoT infrastructure is at risk from a number of cyber attacks that are growing more frequent these days, including DDoS, malicious control, brute force attacks, scanning, and spoofing\cite{ref2}. Strong IoT security measures are necessary by taking into account, among other things, the practical consequences of data breaches, different types of cyber attacks, business issues, and the safety of physical structures. DDoS, brute force, scanning, and spoofing attacks result in a substantial financial loss for IoT networks due to direct costs and indirect costs. Losses from these significant cybercrimes are predicted to exceed USD 10 trillion annually globally by 2025 \cite{ref3}. In order to prevent legitimate users from accessing the network, the primary goal of a DDoS assault is to overload an online service's resources (such as bandwidth) with an enormous flow of traffic from several compromised machines \cite{ref4}. Brute force is another kind of cyber attacks that the attacker used to gain the login or password of a system or page by using a multiple trial method. A scanning attack is the process by which an attacker searches a network, system, or range of IP addresses for weaknesses or active devices. A spoofing attack is the process of passing off communication from an unknown source as originating from a known source and hides the true attacker identity.
+ Although predicting IoT security attacks is difficult, explainable AI (XAI) and machine learning (ML) models are able to identify intricate network patterns and cyber threats. The enormous dimensionality of IoT data and its numerous timing, protocol, and packet aspects increase the danger of over fitting and computational expense. Using federated learning, hybrid transformer, and GNN, the authors in \cite{ref5}created a zero-day attack prediction system by evaluating multiple supervised and unsupervised technique. GNN and clustering techniques were employed in \cite{ref6} to detect intrusions in Internet of Things networks. CNN-based effective STNet was utilized in \cite{ref7} to detect DDoS attacks. The XGBoost model was used in \cite{ref8} to detect SQL injection attacks. In order to detect intrusions in cyber-physical systems, the study in \cite{ref9} employed a lightweight deep federated learning technique. The XGBoost algorithm was used in [\cite{ref10} to detect malware and cyber threats in an IoT network. LSTM and auto encoder were utilized in \cite{ref11} to forecast MiTM attacks in CPS. DDPM, generative AI, and deep learning techniques were employed in \cite{ref12} to identify spoofing and jamming attacks in UAVs. The study in \cite{ref13} employed the least squares approach, SCADA, and Kalman estimator to detect bogus data injection attacks using brute force. The prior research failed to use a suitable machine learning model to anticipate DDoS, regular, scanning, brute force, and spoofing attacks simultaneously with high accuracy. They used XAI for multi-class cyber threat prediction and model expansion in IoT networks; however they failed to address the class imbalance problem. Previous studies lacked appropriate approaches for data collecting, preprocessing, labeling, best feature selection, and hyper parameter tweaking. To solve these issues, this work gives a ensemble voting classifier based DDoS, scanning, brute force, normal, and spoofing attack prediction scheme.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figure/Methodology.png}
+    \caption{Research Methodology Framework}
+    \label{fig:methodology}
+\end{figure}
+This work provides new feature selection technique for suitable feature selection during the ML model learning process along with tuning and preprocessing.
+ The notable contributions of this work are given by:
+(i) In order to forecast DDoS, regular, scanning, brute force, and spoofing attacks, this work gathers a multi-class cyber threat detection dataset. In order to address high imbalance ratio while maintaining data topology and attack-specific features, this study employs a novel class balancing algorithm (AA-DG-TC-CIBS). 
+(ii) A proper preprocessing, ensemble feature selection, hyper parameter tuning, and dataset validation technique are used in this work. For the best cyber threat detection in IoT networks, eight ML techniques were compared in this study. The best prediction accuracy for five-class cyber threat detection in IoT networks is provided by an ensemble voting classifier strategy that includes KNN, RF, and XGBoost. 
+(iii) The proposed ensemble voting classifier's accuracy and F1 score are compared to those of previous studies. This research also looks at the interpretability analysis based on SHAP that reveals which network elements are most crucial for prediction. 
+Relevant research is summarized in Section two. The proposed ensemble voting classifier for cyber attack prediction is described in third section. Evaluation results with discussion are presented in Section four. The future research and this work summary are captured in last section.
+
+
+
+%
+\section{LITERATURE REVIEW}
+%
+This section discusses the use of ML and DL to forecast different cyber attacks. A block chain and ML-based method for detecting cyber attacks in industrial supply chains was created in the article \cite{ref14}. ELM and the while optimization technique were utilized in \cite{ref15} to forecast distributed low-rate DoS attacks. A q learning technique for IoT malicious node detection was given in \cite{ref16}.In order to detect intrusions in energy grid systems, the article in \cite{ref17} employed embedded space mapping systems and auto encoders. In \cite{ref18}, the authors employed ANN and genetic algorithms to detect criminal activity in IoT networks. The ensemble CNN model was employed in \cite{ref19} to identify cyber attacks in power systems. Unsupervised learning techniques were employed in \cite{ref20} to identify DDoS and IDS in cyber physical production systems. For both regular and DDoS attack detection, the authors in \cite{ref21} employed the KNN and random forest algorithms. A PCA and ML-based malicious node identification system for IoT was created by \cite{ref22}. The study in \cite{ref23} employed the least square SVM algorithm, hybrid feature reduction, and Pearson correlation to identify fraudulent traffic in the Internet of Things. BiLSTM was used in \cite{ref24} to identify malicious behavior in EV charging stations. The work in \cite{ref25} employed a Kullback-Leibler divergence-based detector for false data injection attack prediction. The authors in \cite{ref26} achieved 92 percent accuracy in detecting wormhole and sinkhole attacks using an ensemble learning method. The GAN technique was employed in \cite{ref27} to detect hostile intrusions in CPS. CNN and LSTM were employed in \cite{ref28} to identify intrusions in IoTs networks. In \cite{ref29}, the authors employed PCA, XGB, and supervised learning to detect hidden cyber attacks in CPS. Bi-LSTM and attention mechanisms were employed in \cite{ref30}to identify intrusions in IoT networks. Unlike other research, this paper creates a very accurate ensemble voting classifier-based DDoS, spoofing, scanning, normal, and brute force attack prediction system for IoT networks. This works gives a AA-DG-TC-CIBS class balancing algorithm and ensemble feature selection technique along with random search based tuning and 3 fold cross validation.
+%
+\section{PROPOSED SCHEME}
+The methodologies of this work along with detailed steps are illustrated in this section with great details.
+\subsection{System Model}
+Figure~\ref{fig:methodology} 1 shows the suggested system framework for detecting cyber attacks via IoT networks. Four cyber professionals validate the cyber attack dataset that was gathered from Kaggle. The data pretreatment procedures, including data cleaning, one-hot encoding, and standardization, were then carried out. The AA-DG-TC-CIBS algorithm is a recently proposed solution that addresses the dataset's class imbalance problem. Next, an ensemble method that includes RFE, chi-square, and ANOVA is used to identify the best features. Twenty percent of the data is validated. Fifty percent of the data is used for training. The remaining data will be used to evaluate the machine learning model. The remaining percentage is kept for validation data. Eight machine learning models are employed in this work for both training and testing. KNN, random forest, decision tree, XGBoost, LSTM, auto-encoder, transformer, and ensemble voting technique are the names of these machine learning models. The KNN, RF, and XGBoost models are employed in the ensemble soft voting classifier. Random search is used to fine-tune the ML model's hyper parameters. The ensemble voting classifier is the best prediction model based on the highest accuracy score and F1 value. Using an ensemble voting classifier, five cyber attack classes (DDoS, regular, spoofing, brute force, and scanning) are predicted. Additionally, SHAP is used as a XAI technique.
+
+\subsection{Dataset Preparation}
+The RT-IoT 2022 dataset, which includes traffic statistics and normal and problematic network behaviors from several IoT networks, was gathered via Kaggle \cite{ref31}. 123,117 samples with 83 features obtained from network packet analysis are included in the collection. An overview of the dataset structure is shown in Figure 2(a). Flow-based attributes (such as duration and packet counts), packet-based metrics (such as payload sizes and header information), temporal features (such as inter-arrival times), statistical measures, and protocol information are the several categories into which features are divided. The collection includes a number of distinct cyber attack types from different threat categories. Based on attack features and security concerns, the original 12 attack types are combined into 5 major classes in the proposed cyber attack taxonomy, which is depicted in Figure 2(b). Four cyber professionals complete the dataset labeling and validation process. DDoS, regular, spoofing, brute force, and scanning are the classes that are taken into consideration. The significant imbalance in the dataset classes is depicted in Figure 2(b). 77.32 percent of the samples belong to the DDoS class. 6.29 and 6.20 percent of samples are covered by the spoofing and scanning classes, respectively. 10.06 and.03 percent of samples are in the normal and brute-force groups, respectively. The dataset is then balanced using the AA-DG-TC-CIBS technique. Figures 3(a) and 3(b), respectively, depict the dataset balancing process. There are four components to the suggested class balancing algorithm.
+These include class interleaving batch sampling, topology-based balancing, attack-aware weighting, and density-guided sampling. The threat posed by various cyber attack types varies, as does their inherent frequency. Classes that make up less than 10\% of the majority size are given a weight of 1.5, classes that make up 10\% to 30\% are given a weight of 1.2, and all other classes are given a weight of 1.0. This guarantees appropriate representation for major minority attacks, such as Brute Force. Rather than uniformly sampling or interpolating, we compute local density using k-nearest neighbors (k=5). Samples from denser locations have a higher sampling probability. The target sample size (ntarget) for each class is obtained by multiplying the attack-specific weight (wc) by the majority class size (nmax). This work employs the concept of interleaving rather than concatenating samples from different classes following resampling. By generating more balanced mini-batches during training, this enhances gradient estimates and model convergence. The proposed method successfully balances all four classes to about 76,154 samples each, resulting in a final dataset of 304,616 samples.
+
+\subsection{Preprocessing}
+The dataset is first cleaned, all missing values are eliminated, and null values are verified. The duplicate entries in the dataset were also eliminated by this effort. The categorical features are transformed into numerical entries using a single hot encoding. All numerical features are then standardized using Standard Scaler ensuring that traits with different scales contribute equally to model training. Fifty percent of the entire dataset is used as training data in this work. Thirty percent of the total data samples (91385 samples) are included in the testing data.
+\subsection{Important Feature Selection}
+The number of huge features of the dataset may suffer from huge computational cost and over fitting risks. This paper develops an ensemble feature selection for the selection of best features as shown in Figure 4. 
+The methods used in the ensemble feature selection process are ANOVA F test, chi-square test, and RFE. The 20 best features ranking based on different individual models and ensemble model is illustrated in Figure 4. The best eight features for ML based training process based on ensemble feature selection process are bwd\_iat.min, bwd\_init\_window\_size, active.avg, active.max, service\_http, service\_ssl, active.std, and bwd\_iat.avg, respectively. This work used random search for hyper parameter selection and the cross validation value is 3. The work evaluated eight ML classifiers for the best IoT network based cyber attack prediction. 
+Based on the top accuracy and F1 score evaluation process results the ensemble soft voting classifier that includes KNN, random forest, and XGBoost is selected for DDoS, normal, spoofing, brute force, and scanning class prediction. This work also evaluated precision and recall results for best prediction model evaluation along with confusion matrix. Figure 5 highlights the evaluation process and results with detailed discussion.
+
+\begin{figure}[h]
+    \centering
+    
+    % Subfigure (a)
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figure/dataset_overview.png}
+    
+        \label{fig:features}
+    \end{subfigure}
+    \hfill
+    % Subfigure (b)
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figure/class_count.png}
+        
+        \label{fig:attacks}
+    \end{subfigure}
+    
+    \caption{Dataset overview and class count}
+    \label{fig:dataset}
+\end{figure}
+\newpage
+\begin{figure}[h]
+    \centering
+    
+    % Subfigure (a)
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figure/Algo.png}
+       
+        \label{fig:features}
+    \end{subfigure}
+    \hfill
+    % Subfigure (b)
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figure/algo_1.png}
+        
+        \label{fig:attacks}
+    \end{subfigure}
+    
+    \caption{Class balancing (AA-DG-TC-CIBS) algorithm}
+    \label{fig:dataset}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figure/ensemble.png}
+    \caption{Ensemble technique based feature selection}
+
+\end{figure}
+
+
+
+
+
+\subsection{Model Selection, Hyper-parameter Tuning}
+
+Eight ML classifiers were tested in this work to determine the best prediction model. Appropriate hyper parameters are chosen using the random search method. The optimal hyper parameters for the ensemble voting classifier technique are given next in Figure 5(a). The evaluation results of the eight ML classifiers in terms of accuracy and other pertinent metrics are visualized in Figure 5(b). KNN, random forest, decision tree, XGBoost, LSTM, auto-encoder, transformer, and ensemble voting technique are the models that are being compared. For the prediction of five cyber attack classes, the ensemble voting classifier is chosen.
+The ensemble voting classifier includes the KNN, RF, and XGBoost. Along with the same precision and recall values, the suggested ensemble voting classifier provides the greatest accuracy value of 99.94 percent. The confusion matrix of the proposed ensemble voting classifier is captured in Figure 5(c). The plot indicated that accurate prediction values (true positive) and lower tales negative values are provided by the ensemble approach. The SHAP analysis for the ensemble voting method for each feature is displayed in Figure 5(d). According to the figure 5(d), bwd_iat.min and bwd_init_window_size had the greatest mean SHAP values, respectively.
+
+
+\section{RESULTS AND ANALYSIS}
+
+The results of the suggested ensemble voting classifier were compared to those of the existing works [6], [9], and [11] in Table I. According on the comparison results, the suggested ensemble voting classifier outperformed previous comparable studies by at least 1.24\% in accuracy and 1.1\% in precision. The ensemble voting approach's integration of complementing models can lower error and increase the precision of cyber attack class prediction. The use of the AA-DG-TC-CIBS methodology for class imbalance reduction, ensemble feature selection, random search-based parameter tuning, cross validation, data preprocessing and best ML model selection is important factor contributing to the excellent outcomes of the suggested method.This work used suggestions from cyber experts to validate the dataset. Missing and null value management, appropriate encoding, and standards are all part of the preprocessing process. Additionally, this technique chooses appropriate features for model training. SHAP is used to explain feature impact and model performance.
+
+\section{CONCLUSION}
+An ensemble voting classifier-based system for DDoS, brute force, scanning, normal, and spoofing attack detection in IoT networks was introduced in this paper. The dataset is preprocessed using appropriate encoding and standardization methods and verified by cyber professionals. The novel class imbalance handling method used in this work is called AA-DG-TC-CIBS. For optimal feature selection, an ensemble feature selection method utilizing chi-square, ANOVA, and RFE is employed. Eight machine learning classifiers are evaluated for their ability to identify cyber attacks in Internet of Things datasets. Out of all the techniques, the ensemble voting classifier (KNN, RF, and XGBoost) provides the best prediction accuracy. The proposed ensemble voting method provides at least 1.24 percent higher F1 score and accuracy value than previous efforts, with 99.94 percent accuracy and precision value. This study uses the SHAP method for feature impact analysis and models that explain ability. Future research projects could include predicting zero-day attacks, malware, phishing, and SQL injection attacks using federated learning; analyzing security threats using LLM; analyzing security threats for quantum networks using DRL; and predicting malware in images and videos using DL and IoT
+
+%
+% ---- Bibliography ----
+%
+\begin{thebibliography}{6}
+%
+
+\bibitem{ref1}
+Fortinet, ``What Is IoT Security? Challenges and Requirements,'' 
+\textit{Fortinet Cyberglossary}, 
+\url{https://www.fortinet.com/resources/cyberglossary}, accessed January 2026.
+
+\bibitem{ref2}
+M. Hasan et al., ``Attack and anomaly detection in IoT sensors in IoT sites using machine learning approaches,'' \textit{IoT Journal}, vol. 7, no. 1, 2019, pp. 1--15.
+
+\bibitem{ref3}
+Deep Strike, ``Cyber crime statistics,'' 
+\url{https://deepstrike.io/blog/cybercrime-statistics-2025}, accessed January 2026.
+
+\bibitem{ref4}
+IBM, ``What is a distributed denial-of-service (DDoS) attack?'', 
+\url{https://www.ibm.com/think/topics/ddos}, accessed January 2026.
+
+\bibitem{ref5}
+S. N. Prajwalasimha et al., ``Federated Adversarial Learning for Scalable and Robust Zero-Day Cyber Threat Detection in IoT Networks,'' ICICI conference, India, 2025, pp. 1408--1414.
+
+\bibitem{ref6}
+Z. Simhon et al., ``A New D-MAGIC: Dynamic Model for Cybersecurity Attack Detection Using GNNs into Clustering,'' IEEE International Conference on Communications, Canada, 2025, pp. 6771--6776. 
+
+\bibitem{ref7}
+L. Zhang et al., ``EfficientSTNet: A Deep Learning Approach for Multi-Class DDoS Detection,'' IEEE Access, vol. 13, pp. 157587--157599, 2025.
+
+\bibitem{ref8}
+W. A. AlZoubi et al., ``Optimized Detection of SQL Injection Attacks Using Machine Learning: Enhancing Accuracy and Explainability in Cybersecurity,'' Cyber-AI conference, Bulgaria, 2025, pp. 73--81.
+
+\bibitem{ref9}
+I. A. Soomro et al., ``Lightweight privacy-preserving federated deep intrusion detection for industrial cyber-physical system,'' \textit{Journal of Communications and Networks}, vol. 26, no. 6, pp. 632--649, Dec. 2024.
+
+\bibitem{ref10}
+I. Mohammed et al., ``A Comparative Study on Malware Detection Using Supervised Machine Learning Models,'' Cyber-AI conference, Bulgaria, 2025, pp. 232--236.
+
+\bibitem{ref11}
+S. Sun et al., ``Anomaly Detection in Cyber-Physical Systems Using Long-Short Term Memory Autoencoders: A Case Study with Man-in-the-Middle (MiTM) Attack,'' TPEC conference, USA, 2025, pp. 1--6.
+
+\bibitem{ref12}
+B. S. Sarikaya et al., ``GenAI-Based Jamming and Spoofing Attacks on UAVs,'' IEEE Access, vol. 13, pp. 107596--107620, 2025.
+
+\bibitem{ref13}
+P. L. Bhattar et al., ``Impact of Brute Force Based False Data Injection Attack on Distribution System State Estimation,'' TENCON conference, New Zealand, 2021, pp. 562--567.
+
+\bibitem{ref14}
+S. Ismail et al., ``A Comparative Study of Lightweight Machine Learning Techniques for Cyber-Attacks Detection in Blockchain-Enabled Industrial Supply Chain,'' IEEE Access, vol. 12, pp. 102481--102491, 2024.
+
+\bibitem{ref15}
+D. Tang et al., ``DOE-DTL: A ML-Utilized System Combined With PDP for Detection and Mitigation of DLDoS Attack,'' IEEE Transactions on Networking, vol. 34, pp. 139--151, 2026.
+
+\bibitem{ref16}
+W. E. Gadal et al., ``Federated Secure Intelligent Intrusion Detection and Mitigation Framework for SD-IoT Networks using ViT-GraphSAGE and Automated Attack Reporting,'' NTMS conference, France, 2025, pp. 317--325.
+
+\bibitem{ref17}
+S.-T. Cheng et al., ``Detection of Unseen Cyber Attacks in Smart Energy Grid Systems Using Autoencoder and Embedding Space Mapping,'' SEGE conference, Canada, 2025, pp. 146--150.
+
+\bibitem{ref18}
+A. Srivastava et al., ``Detection of Cyber Attack in IoT Based Model Using ANN Model with Genetic Algorithm,'' IC2PCT conference, India, 2024, pp. 1198--1201.
+
+\bibitem{ref19}
+N. Heidari et al., ``Detection of Fault and Cyber Attack in Cyber-Physical System Based on Ensemble Convolutional Neural Network,'' ICCIA conference, Iran, 2024, pp. 1--6.
+
+\bibitem{ref20}
+A. Hussain et al., ``Rule-Based With Machine Learning IDS for DDoS Attack Detection in Cyber-Physical Production Systems (CPPS),'' IEEE Access, vol. 12, pp. 114894--114911, 2024.
+
+\bibitem{ref21}
+S. Haribalaji et al., ``Distributed Denial of Service (DDOS) Attack Detection Using Classification Algorithm,'' ADICS conference, India, 2024, pp. 1--6.
+
+\bibitem{ref22}
+A. Mosally, ``Improving Intrusion Detection System Accuracy Through PCA-Based Feature Reduction and Machine Learning Techniques,'' Cyber-AI conference, Bulgaria, 2025, pp. 198--203.
+
+\bibitem{ref23}
+A. Senthilkumar et al., ``Pearson Correlation Coefficient based Improved Least Square - Support Vector Machine for Cyber-Attack Detection in Internet of Things,'' ICDCECE conference, India, 2024, pp. 1--4.
+
+\bibitem{ref24}
+A. Hussain et al., ``Anomaly Detection Using Bi-Directional Long Short-Term Memory Networks for Cyber-Physical Electric Vehicle Charging Stations,'' IEEE Transactions on Industrial Cyber-Physical Systems, vol. 2, pp. 508--518, 2024.
+
+\bibitem{ref25}
+Z. Wang et al., ``Attack Detection of Cyber-Physical Systems With Two-Channel False Data Injection Attacks,'' IEEE Transactions on Industrial Cyber-Physical Systems, vol. 4, pp. 17--24, 2026. 
+
+\bibitem{ref26}
+S. Kumar et al., ``An Ensemble Learning Framework for Reliable Detection of Wormhole and Sinkhole Attacks in Cybersecurity,'' ASSIC conference, India, 2025, pp. 1--6.
+
+\bibitem{ref27}
+S. R. Gunnam et al., ``Detection of Real Time Malicious Intrusions Using GAN (Generative Adversarial Networks) in Cyber Physical System,'' INCET conference, India, 2024, pp. 1--7.
+
+\bibitem{ref28}
+M. J. Pandeeswari. G et al., ``Improving IoT Security - A Smart Intrusion Detection System Utilizing Deep Learning,'' ICIMA conference, India, 2025, pp. 1252--1257.
+
+\bibitem{ref29}
+Y. Gasmi et al., ``Supervised Learning Models empowered by XGBfs and PCA for Unobservable Cyber Attacks detection in Cyber-Physical Systems,'' IC2EM conference, Algeria, 2025, pp. 1--6. 
+
+\bibitem{ref30}
+S. Tian et al., ``Fog-Enabled Intrusion Detection Method Integrating Bi-LSTM and Multi-Head Self-Attention for IoT,'' CSCWD conference, China, 2024, pp. 2004--2009.
+
+\bibitem{ref31}
+Kaggle, ``RT-IoT2022 (Real Time Internet Of Things) dataset,'' 
+\url{https://www.kaggle.com/datasets/supplejade/rt-iot2022real-time-internet-of-things}, accessed January 2026.
+
+\end{thebibliography}
+
+
+\end{thebibliography}
+\end{document}

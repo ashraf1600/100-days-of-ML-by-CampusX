@@ -57,15 +57,15 @@ The main contributions of this work can be summarized as follows:
 The remainder of this paper is organized as follows. Section II reviews related work in counterfeit currency detection and transformer-based computer vision models. Section III describes the proposed methodology and model architecture. Section IV presents the experimental results. Finally, Section V concludes the paper and discusses potential future research directions.
 \section{Related Work}
 
-Research on counterfeit Bangladeshi banknote detection has evolved significantly over the past decade, progressing from traditional image processing techniques to advanced deep learning models. Early approaches primarily relied on handcrafted feature extraction methods to identify security elements embedded in banknotes, such as micro-printing, watermarks, holograms, and optically variable inks. Classical computer vision algorithms including Optical Character Recognition (OCR), Scale-Invariant Feature Transform (SIFT), and Support Vector Machines (SVM) were widely used to analyze these features. Although these methods achieved moderate accuracy levels of approximately 93\%, their performance was often sensitive to variations in illumination, image quality, and background conditions.
+Research on counterfeit Bangladeshi banknote detection has evolved significantly over the past decade, progressing from traditional image processing techniques to advanced deep learning models\cite{10}. Early approaches primarily relied on handcrafted feature extraction methods to identify security elements embedded in banknotes, such as micro-printing, watermarks, holograms, and optically variable inks. Classical computer vision algorithms including Optical Character Recognition (OCR), Scale-Invariant Feature Transform (SIFT), and Support Vector Machines (SVM) were widely used to analyze these features\cite{11}. Although these methods achieved moderate accuracy levels of approximately 93\%, their performance was often sensitive to variations in illumination, image quality, and background conditions.
 
-With the rapid advancement of deep learning, convolutional neural networks (CNNs) became the dominant approach for image-based counterfeit detection. CNN-based architectures are capable of automatically learning hierarchical feature representations from raw images, eliminating the need for manual feature engineering. Several studies applied CNN architectures such as AlexNet and VGG-based models to banknote classification tasks. For example, modified AlexNet architectures combined with Multi-SVM classifiers have demonstrated improved detection performance on Bangladeshi currency datasets. Despite these improvements, CNN-based approaches still face challenges in complex real-world scenarios where images may contain variations in lighting, orientation, occlusion, and noise.
+With the rapid advancement of deep learning, convolutional neural networks (CNNs) became the dominant approach for image-based counterfeit detection. CNN-based architectures are capable of automatically learning hierarchical feature representations from raw images, eliminating the need for manual feature engineering. Several studies applied CNN architectures such as AlexNet and VGG-based models to banknote classification tasks. For example, modified AlexNet architectures combined with Multi-SVM classifiers have demonstrated improved detection performance on Bangladeshi currency datasets\cite{12}. Despite these improvements, CNN-based approaches still face challenges in complex real-world scenarios where images may contain variations in lighting, orientation, occlusion, and noise.
 
-More recently, transformer-based models have emerged as powerful alternatives to CNN architectures in computer vision tasks. Vision Transformers (ViT) leverage self-attention mechanisms to model global relationships between image regions, enabling the network to capture contextual dependencies across the entire image. This capability allows transformer-based models to better handle variations in scale, orientation, and background compared to traditional convolutional networks. Recent research applying ViT models to Bangladeshi currency recognition tasks has reported significant improvements in classification performance, achieving accuracy levels as high as 99.93\% on enhanced datasets containing new denominations such as the 200 Taka note and images captured under diverse environmental conditions.
+More recently, transformer-based models have emerged as powerful alternatives to CNN architectures in computer vision tasks. Vision Transformers (ViT) leverage self-attention mechanisms to model global relationships between image regions, enabling the network to capture contextual dependencies across the entire image. This capability allows transformer-based models to better handle variations in scale, orientation, and background compared to traditional convolutional networks. Recent research applying ViT models to Bangladeshi currency recognition tasks has reported significant improvements in classification performance, achieving accuracy levels as high as 99.93\% on enhanced datasets containing new denominations such as the 200 Taka note and images captured under diverse environmental conditions\cite{13}\cite{14}.
 
-In addition to improved classification performance, ViT-based systems have demonstrated robustness in handling challenging real-world conditions, including variations in illumination, rotation, and noise. These characteristics make transformer-based models highly suitable for practical applications such as automated currency authentication systems and mobile-based banknote recognition tools designed to assist visually impaired users.
+In addition to improved classification performance, ViT-based systems have demonstrated robustness in handling challenging real-world conditions, including variations in illumination, rotation, and noise. These characteristics make transformer-based models highly suitable for practical applications such as automated currency authentication systems and mobile-based banknote recognition tools designed to assist visually impaired users. Vision Transformer-based systems have been successfully applied to Bangladeshi coin recognition, achieving up to 99.39\% accuracy \cite{15}.
 
-Although research specifically focused on counterfeit detection of Bangladeshi banknotes using Vision Transformers remains relatively limited, the strong performance of transformer architectures in related currency recognition tasks suggests significant potential for their application in counterfeit detection frameworks. Motivated by these advancements, this work investigates the application of the Data-efficient Image Transformer (DeiT) architecture for automated detection of counterfeit Bangladeshi banknotes using a combined dataset collected from multiple publicly available sources.
+Although research specifically focused on counterfeit detection of Bangladeshi banknotes using Vision Transformers remains relatively limited, the strong performance of transformer architectures in related currency recognition tasks suggests significant potential for their application in counterfeit detection frameworks\cite{16}. Motivated by these advancements, this work investigates the application of the Data-efficient Image Transformer (DeiT) architecture for automated detection of counterfeit Bangladeshi banknotes using a combined dataset collected from multiple publicly available sources.
 
 \section{Methodology}
 
@@ -316,6 +316,47 @@ H. Touvron, M. Cord, M. Douze, F. Massa, A. Sablayrolles, and H. Jégou,
 “Training data-efficient image transformers \& distillation through attention,”
 in \textit{Proceedings of the 38th International Conference on Machine Learning (ICML)},
 vol. 139, pp. 10347--10357, 2021.
+
+
+
+\bibitem{10}
+M. A. Siddiki, M. N. Hossain, K. Akhter, and M. R. Rahman,
+“Bangladeshi currency identification and fraudulence detection using deep learning and feature extraction,”
+\textit{International Journal of Computer Science and Mobile Computing (IJCSMC)}, 
+vol. 12, no. 1, pp. 1--13, Jan. 2023,
+doi: 10.47760/ijcsmc.2022.v12i01.001.
+
+
+\bibitem{11}
+Z. Ahmed, S. Yasmin, M. N. Islam, and R. U. Ahmed,
+“Image processing based feature extraction of Bangladeshi banknotes,”
+in \textit{Proc. IEEE Conference}, IEEE.
+
+\bibitem{12}
+H. Nowshin, J. Sikder, and U. K. Das,
+“A deep learning approach for detecting Bangladeshi counterfeit currency,”
+in \textit{Proc. Intelligent Computing \& Optimization (ICO)}, 2022, pp. 540--549.
+\bibitem{13}
+J. J. Puspo and M. S. Rahman,
+“BengaliTaka: A comparative analysis of Transformer and CNNs on Bangladeshi currency recognition,”
+in \textit{Proc. IEEE Conference}, IEEE.
+
+\bibitem{14}
+M. F. Islam, J. Hasan, and M. S. Rahman,
+“Bangladeshi paper currency recognition with improved dataset using Vision Transformer,”
+in \textit{Proc. IEEE International Conference on Image Processing (ICIP)}, pp. xx--xx, 2025.
+
+
+\bibitem{15}
+P. Bhowmik, N. Bhowmik, and M. S. Rahman,
+“ViTCoin: A Vision Transformer-based system for Bangladeshi coin detection to assist the visually impaired and numismatic heritage,”
+in \textit{Proc. IEEE Conference}, IEEE.
+
+\bibitem{16}
+D. B. Gajjar, P. Faldu, D. R. Kothadiya, A. P. Chaudhari, and N. M. Bhatt,
+“DeViTC: Deep-Vision Transformer to recognize originality of currency,”
+in \textit{Proc. IEEE Conference}, IEEE.
+
 
 \end{thebibliography}
 

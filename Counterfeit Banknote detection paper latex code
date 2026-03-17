@@ -57,7 +57,7 @@ The main contributions of this work can be summarized as follows:
 The remainder of this paper is organized as follows. Section II reviews related work in counterfeit currency detection and transformer-based computer vision models. Section III describes the proposed methodology and model architecture. Section IV presents the experimental results. Finally, Section V concludes the paper and discusses potential future research directions.
 \section{Related Work}
 
-Research on counterfeit Bangladeshi banknote detection has evolved significantly over the past decade, progressing from traditional image processing techniques to advanced deep learning models\cite{10}. Early approaches primarily relied on handcrafted feature extraction methods to identify security elements embedded in banknotes, such as micro-printing, watermarks, holograms, and optically variable inks. Classical computer vision algorithms including Optical Character Recognition (OCR), Scale-Invariant Feature Transform (SIFT), and Support Vector Machines (SVM) were widely used to analyze these features\cite{11}. Although these methods achieved moderate accuracy levels of approximately 93\%, their performance was often sensitive to variations in illumination, image quality, and background conditions.
+Research on counterfeit Bangladeshi banknote detection has evolved significantly over the past decade, progressing from traditional image processing techniques to advanced deep learning models\cite{10}\cite{17}. Early approaches primarily relied on handcrafted feature extraction methods to identify security elements embedded in banknotes, such as micro-printing, watermarks, holograms, and optically variable inks. Classical computer vision algorithms including Optical Character Recognition (OCR), Scale-Invariant Feature Transform (SIFT), and Support Vector Machines (SVM) were widely used to analyze these features\cite{11}. Although these methods achieved moderate accuracy levels of approximately 93\%, their performance was often sensitive to variations in illumination, image quality, and background conditions.
 
 With the rapid advancement of deep learning, convolutional neural networks (CNNs) became the dominant approach for image-based counterfeit detection. CNN-based architectures are capable of automatically learning hierarchical feature representations from raw images, eliminating the need for manual feature engineering. Several studies applied CNN architectures such as AlexNet and VGG-based models to banknote classification tasks. For example, modified AlexNet architectures combined with Multi-SVM classifiers have demonstrated improved detection performance on Bangladeshi currency datasets\cite{12}. Despite these improvements, CNN-based approaches still face challenges in complex real-world scenarios where images may contain variations in lighting, orientation, occlusion, and noise.
 
@@ -73,13 +73,13 @@ This section describes the dataset preparation, preprocessing pipeline, model ar
 
 \subsection{Dataset}
 
-The dataset used in this study consists of images of genuine and counterfeit Bangladeshi banknotes collected from two publicly available sources: the \textit{JaalTaka: A Benchmark Dataset for Detecting Counterfeit Bangladeshi Banknotes} available on Mendeley Data and the \textit{Bangladeshi Taka Note} dataset available on Kaggle. After combining and organizing the datasets, the final dataset contains a total of 10,412 banknote images.
+The dataset used in this study consists of images of genuine and counterfeit Bangladeshi banknotes collected from two publicly available sources: the \textit{JaalTaka: A Benchmark Dataset for Detecting Counterfeit Bangladeshi Banknotes} available on Mendeley Data and the \textit{Bangladeshi Taka Note} dataset available on Kaggle. After combining and organizing the datasets, the final dataset contains a total of 10,412 banknote images\cite{18}.
 
 The dataset follows a standard \textit{ImageFolder} directory structure with two classes:
 
 \begin{itemize}
-\item Class 0: Counterfeit banknotes
-\item Class 1: Genuine banknotes
+\item Class 0: Counterfeit 
+\item Class 1: Genuine 
 \end{itemize}
 
 To train and evaluate the model effectively, the dataset was divided into three subsets: training, validation, and testing. The split ratio used in this study is approximately 80\% for training, 10\% for validation, and 10\% for testing. The training set is used to learn model parameters, the validation set is used for hyperparameter tuning and monitoring model performance during training, and the test set is used for final performance evaluation.
@@ -128,7 +128,7 @@ The horizontal flip augmentation increases the diversity of the training data an
 
 \subsection{Model Architecture}
 
-The proposed system employs the Data-efficient Image Transformer (DeiT) Tiny architecture, specifically the \textit{deit\_tiny\_patch16\_224} model. This architecture provides an effective balance between computational efficiency and classification performance.
+The proposed system, as shown in Fig.~\ref{fig:methodology}, employs the Data-efficient Image Transformer (DeiT) Tiny architecture, specifically the \textit{deit\_tiny\_patch16\_224} model.This architecture provides an effective balance between computational efficiency and classification performance.
 
 The model processes input images through several components:
 
@@ -145,7 +145,7 @@ The model processes input images through several components:
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{Methodology.png}
-\caption{Proposed pipeline for counterfeit Bangladeshi banknote detection using the DeiT-Tiny Vision Transformer. The dataset is collected from the JaalTaka (Mendeley) and Bangladeshi Taka Note (Kaggle) datasets. Images are preprocessed and processed through the DeiT-Tiny architecture, which performs binary classification to identify genuine and counterfeit banknotes.}
+\caption{Proposed pipeline for counterfeit Bangladeshi banknote detection using the DeiT-Tiny Vision Transformer.}
 \label{fig:methodology}
 \end{figure*}
 
@@ -184,32 +184,30 @@ These metrics provide a comprehensive assessment of classification performance.
 
 \subsection{Classification Performance}
 
-The experimental results show that the proposed transformer-based model performs effectively in detecting counterfeit banknotes. The model achieved a test accuracy of 97.88\%.
+The experimental results indicate that the proposed transformer-based model performs effectively in detecting counterfeit banknotes. The model achieved a test accuracy of 97.88\%, demonstrating its strong capability in distinguishing genuine and counterfeit currency. A summary of the evaluation metrics is presented in Table~\ref{tab:performance}.
 
-\begin{table}[h]
+\begin{table}[htbp]
+\caption{Performance Evaluation Metrics}
 \centering
 \begin{tabular}{lc}
 \toprule
-Metric & Value \\
+\textbf{Metric} & \textbf{Value} \\
 \midrule
-Accuracy & 97.88\% \\
+Accuracy  & 97.88\% \\
 Precision & 97.94\% \\
-Recall & 97.88\% \\
-F1-score & 97.86\% \\
-ROC-AUC & 99.65\% \\
-APCER & 6.13\% \\
-BPCER & 0.00\% \\
-
-
-
+Recall    & 97.88\% \\
+F1-score  & 97.86\% \\
+ROC-AUC   & 99.65\% \\
+APCER     & 6.13\% \\
+BPCER     & 0.00\% \\
 \bottomrule
 \end{tabular}
-\caption{Model Performance Metrics}
+\label{tab:performance}
 \end{table}
 
-The model achieves a test accuracy of 97.88\%, demonstrating that Vision Transformers can effectively learn discriminative features for counterfeit banknote detection. Despite the relatively small size of the DeiT-Tiny architecture, the model successfully captures both local texture patterns and global structural inconsistencies present in counterfeit notes. The model also achieves a BPCER of 0.00\%, meaning all genuine banknotes were correctly identified. This is particularly important for real-world banking applications, where false rejection of genuine currency can cause operational delays. Additionally, the model maintains a counterfeit detection rate of 93.87\% (derived from 6.13\% APCER), indicating strong performance in identifying counterfeit banknotes while preserving reliability for genuine currency verification.
+The high classification accuracy suggests that Vision Transformer-based architectures can effectively learn discriminative representations for counterfeit banknote detection. Despite the relatively lightweight DeiT-Tiny architecture, the model successfully captures both fine-grained texture patterns and broader structural characteristics present in banknotes. 
 
-
+Furthermore, the model achieved a BPCER of 0.00\%, indicating that all genuine banknotes in the test set were correctly classified. This is particularly important for practical financial applications, where misclassifying genuine currency can lead to unnecessary operational issues. In addition, the model demonstrates strong counterfeit detection capability, achieving a detection rate of 93.87\%, which corresponds to an APCER of 6.13\%. These results highlight the effectiveness of the proposed approach in maintaining reliable verification of genuine notes while accurately identifying counterfeit currency.
 \subsection{Confusion Matrix Analysis}
 
 \begin{figure}[htbp]
@@ -219,12 +217,12 @@ The model achieves a test accuracy of 97.88\%, demonstrating that Vision Transfo
 \label{fig:confusion_matrix}
 \end{figure}
 
-The confusion matrix shows that the model correctly identifies most counterfeit banknotes while achieving 100\% accuracy in recognizing genuine notes. The APCER is 6.13\%, indicating a small number of counterfeit notes misclassified as genuine, while the BPCER is 0.00\%, meaning no genuine banknotes were incorrectly rejected. This result highlights the model’s reliability in practical banking scenarios by prioritizing accurate recognition of genuine currency while maintaining strong counterfeit detection performance.
+The confusion matrix in Fig.~\ref{fig:confusion_matrix} shows that the model correctly identifies most counterfeit banknotes while achieving 100\% accuracy in recognizing genuine notes. The APCER is 6.13\%, indicating a small number of counterfeit notes misclassified as genuine, while the BPCER is 0.00\%, meaning no genuine banknotes were incorrectly rejected. This result highlights the model’s reliability in practical banking scenarios by prioritizing accurate recognition of genuine currency while maintaining strong counterfeit detection performance.
 
 
 \subsection{ROC Curve}
 
-The ROC-AUC of 99.65\% indicates exceptional discriminative ability across all possible classification thresholds. This near-perfect value suggests the model's probability outputs are well-calibrated and provide strong separation between genuine and counterfeit classes.
+The ROC-AUC in Fig. ~\ref{fig:roc} of 99.65\% indicates exceptional discriminative ability across all possible classification thresholds. This near-perfect value suggests the model's probability outputs are well-calibrated and provide strong separation between genuine and counterfeit classes.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.45\textwidth]{ROC.png}
@@ -235,13 +233,11 @@ The ROC-AUC of 99.65\% indicates exceptional discriminative ability across all p
 
 \section{Discussion}
 
-The proposed Vision Transformer achieved \textbf{97.88\% test accuracy}, demonstrating its effectiveness in learning discriminative features for counterfeit banknote detection. Despite using the lightweight DeiT-tiny architecture, the model successfully captures both local texture irregularities and global structural inconsistencies through the self-attention mechanism. The \textbf{zero BPCER (0.00\%)} indicates perfect recognition of genuine banknotes, which is crucial in real banking operations to avoid customer inconvenience and processing delays. Additionally, the \textbf{93.87\% counterfeit detection rate} (APCER = 6.13\%) reflects a strong balance between security and usability.
+The proposed Vision Transformer achieved 97.88\% test accuracy, demonstrating its effectiveness in learning discriminative features for counterfeit banknote detection. Despite using the lightweight DeiT-tiny architecture, the model successfully captures both local texture irregularities and global structural inconsistencies through the self-attention mechanism. The zero BPCER (0.00\%) indicates perfect recognition of genuine banknotes, which is crucial in real banking operations to avoid customer inconvenience and processing delays. Additionally, the 93.87\% counterfeit detection rate (APCER = 6.13\%) reflects a strong balance between security and usability.
 
-Compared to traditional approaches, the proposed method outperforms CNN-based models (typically 90--96\% accuracy) and hand-crafted feature-based methods (85--92\%), highlighting the advantage of transformer-based long-range dependency modeling and end-to-end feature learning. Furthermore, transfer learning using ImageNet-pretrained weights significantly improved convergence speed and reduced the need for large labeled datasets.
+Compared to traditional approaches, the proposed method outperforms CNN-based models and hand-crafted feature-based methods, highlighting the advantage of transformer-based long-range dependency modeling and end-to-end feature learning. Furthermore, transfer learning using ImageNet-pretrained weights significantly improved convergence speed and reduced the need for large labeled datasets.
 
 However, several limitations remain. Model performance may vary across different currencies, imaging conditions, and physically worn or damaged banknotes. In addition, robustness against adversarial attacks and the lack of interpretability require further investigation. Future work will focus on multi-currency dataset expansion, attention visualization for explainability, adversarial training, and evaluation under diverse real-world conditions.
-
-From a deployment perspective, the model’s compact size (\textbf{5.7M parameters}) and processing speed (\textbf{22.7 images/sec}) make it suitable for edge-based applications such as ATMs, teller stations, and retail point-of-sale systems. Practical implementation should include confidence threshold calibration, continuous performance monitoring, and periodic retraining to adapt to emerging counterfeit patterns.
 
 \section{Conclusion}
 
@@ -351,13 +347,24 @@ in \textit{Proc. IEEE International Conference on Image Processing (ICIP)}, pp. 
 P. Bhowmik, N. Bhowmik, and M. S. Rahman,
 “ViTCoin: A Vision Transformer-based system for Bangladeshi coin detection to assist the visually impaired and numismatic heritage,”
 in \textit{Proc. IEEE Conference}, IEEE.
-
++
 \bibitem{16}
 D. B. Gajjar, P. Faldu, D. R. Kothadiya, A. P. Chaudhari, and N. M. Bhatt,
 “DeViTC: Deep-Vision Transformer to recognize originality of currency,”
 in \textit{Proc. IEEE Conference}, IEEE.
 
+\bibitem{17}
+N. Bodkhe, D. Bodkhe, A. Tayade, S. Makode, and N. Khalsa,
+“Detection and counting of fake currency \& genuine currency using image processing,”
+\textit{International Journal of Innovative Science and Research Technology (IJISRT)},
+vol. 9, no. 4, pp. 2165--2170, Apr. 2024,
+doi: 10.38124/ijisrt/IJISRT24APR2080.
 
+\bibitem{18}
+B. R. Chowdhury, F. J. Tisha, S. Rahman, and S. Islam,
+“JaalTaka: A benchmark dataset for detecting counterfeit Bangladeshi banknotes,”
+\textit{Data in Brief}, vol. 64, p. 112377, Dec. 2025,
+doi: 10.1016/j.dib.2025.112377.
 \end{thebibliography}
 
 \end{document}
